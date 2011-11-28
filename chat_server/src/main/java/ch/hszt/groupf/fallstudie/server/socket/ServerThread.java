@@ -6,14 +6,35 @@ import java.net.Socket;
 
 import ch.hszt.groupf.fallstudie.server.msgparser.MsgParser;
 
+/**
+ * The ServerThread Class contains the interactions with the Chat-Client and the
+ * SocketServer.
+ * 
+ * @author esterren
+ * 
+ */
 public class ServerThread extends Thread {
 
 	private SocketServer _server;
 	private Socket _socket;
 	private String _socketUserName;
 
-	public ServerThread(SocketServer inServer, Socket inSocket, String inSocketUserName) {
-		// TODO Auto-generated constructor stub
+	/**
+	 * 
+	 * @param inServer
+	 *            an Instance of the SocketServer. This is needed to exchange
+	 *            messages and oth. between the userspecific ServerThread and
+	 *            the SocketServer.
+	 * @param inSocket
+	 * @param inSocketUserName
+	 */
+	public ServerThread(SocketServer inServer, Socket inSocket, String inSocketUserName)
+			throws IllegalArgumentException {
+
+		if ((inServer == null) || (inSocket == null) || (inSocketUserName == null)) {
+			throw new IllegalArgumentException(
+					"null reference in new ServerThread(SocketServer inServer, Socket inSocket, String inSocketUserName) is not allowed!");
+		}
 		_server = inServer;
 		_socket = inSocket;
 		_socketUserName = inSocketUserName;
