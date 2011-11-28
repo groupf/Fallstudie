@@ -31,11 +31,11 @@ public class MsgParserJunitTest extends TestCase {
 
 		assertTrue(MsgParser.isForSpecificUser("/asdfwwe"));
 		assertTrue(MsgParser.isForSpecificUser("/ Hallo"));
-		// assertTrue(MsgParser.isForSpecificUser("/"));
+		assertTrue(MsgParser.isForSpecificUser("/"));
 		assertFalse(MsgParser.isForSpecificUser("Hallo Test"));
 		assertFalse(MsgParser.isForSpecificUser("\\user hello"));
 		assertFalse(MsgParser.isForSpecificUser("\\user"));
-		// assertFalse(MsgParser.isForSpecificUser(null));
+		assertFalse(MsgParser.isForSpecificUser(null));
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class MsgParserJunitTest extends TestCase {
 		assertEquals("", MsgParser.getRecipientFromMsg("/"));
 
 		assertEquals("", MsgParser.getRecipientFromMsg("\testUser Abhier kommt die Meldung"));
-		// assertEquals("", MsgParser.getRecipientFromMsg(null));
+		assertEquals("", MsgParser.getRecipientFromMsg(null));
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class MsgParserJunitTest extends TestCase {
 
 		assertEquals("\testUser Abhier kommt die Meldung",
 				MsgParser.getMsgPartFromMsg("\testUser Abhier kommt die Meldung"));
-		// assertEquals("", MsgParser.getMsgPartFromMsg(null));
+		assertEquals("", MsgParser.getMsgPartFromMsg(null));
 
 	}
 }

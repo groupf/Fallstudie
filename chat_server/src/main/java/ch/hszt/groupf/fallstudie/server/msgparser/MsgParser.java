@@ -14,6 +14,7 @@ public class MsgParser {
 	 */
 	public static boolean isForSpecificUser(String inMessage) {
 		return inMessage.startsWith(_sendToIndicator);
+
 	}
 
 	/**
