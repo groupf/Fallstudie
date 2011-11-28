@@ -12,7 +12,11 @@ public class MsgParser {
 	 * @return true, if the inMessage starts with the character ' / ', otherwise
 	 *         false.
 	 */
-	public static boolean isForSpecificUser(String inMessage) {
+	public static boolean isForSpecificUser(String inMessage) throws IllegalArgumentException {
+		if (inMessage == null) {
+			throw new IllegalArgumentException("null-String is not allowed in message");
+
+		}
 		return inMessage.startsWith(_sendToIndicator);
 
 	}
@@ -27,7 +31,11 @@ public class MsgParser {
 	 *         and the first blank in the inMessage String. Otherwise it returns
 	 *         an empty String.
 	 */
-	public static String getRecipientFromMsg(String inMessage) {
+	public static String getRecipientFromMsg(String inMessage) throws IllegalArgumentException {
+		if (inMessage == null) {
+			throw new IllegalArgumentException("null-String is not allowed in message");
+
+		}
 		if (isForSpecificUser(inMessage)) {
 			String recipientUsername = "";
 
@@ -47,7 +55,11 @@ public class MsgParser {
 	 * @return the real message, which starts after the pattern ' / ' +
 	 *         recipient + {blank}
 	 */
-	public static String getMsgPartFromMsg(String inMessage) {
+	public static String getMsgPartFromMsg(String inMessage) throws IllegalArgumentException {
+		if (inMessage == null) {
+			throw new IllegalArgumentException("null-String is not allowed in message");
+
+		}
 		if (!isForSpecificUser(inMessage)) {
 			return inMessage;
 		}

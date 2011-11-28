@@ -1,25 +1,35 @@
 package ch.hszt.groupf.fallstudie.server.msgparser;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-/**
- * This Testclass tests the functionality of the Message-Parser. A massage can
- * be for a specific user and because of the reason that communication between
- * the server and the client is a simple String, there must be a reserved
- * Character to indicate this.Beside the recipients-name needs to be in the
- * message at a specified place.
- * 
- * @author esterren
- * 
- */
-public class MsgParserJunitTest extends TestCase {
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-	protected void setUp() throws Exception {
-		super.setUp();
+public class MsgParserTest {
+	/**
+	 * This Testclass tests the functionality of the Message-Parser. A massage
+	 * can be for a specific user and because of the reason that communication
+	 * between the server and the client is a simple String, there must be a
+	 * reserved Character to indicate this.Beside the recipients-name needs to
+	 * be in the message at a specified place.
+	 * 
+	 * @author esterren
+	 * 
+	 */
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 	}
 
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	/**
@@ -27,15 +37,23 @@ public class MsgParserJunitTest extends TestCase {
 	 * Character ' / ' the function under test should return true, otherwise
 	 * false.
 	 */
-	public void testIsForSecificUser() {
-
+	@Test
+	public void testIsForSpecificUser() {
 		assertTrue(MsgParser.isForSpecificUser("/asdfwwe"));
 		assertTrue(MsgParser.isForSpecificUser("/ Hallo"));
 		assertTrue(MsgParser.isForSpecificUser("/"));
 		assertFalse(MsgParser.isForSpecificUser("Hallo Test"));
 		assertFalse(MsgParser.isForSpecificUser("\\user hello"));
 		assertFalse(MsgParser.isForSpecificUser("\\user"));
-		assertFalse(MsgParser.isForSpecificUser(null));
+	}
+
+	/**
+	 * If a message is null the test should fail with a
+	 * IllegalArgumentException.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testIsForSpecificUserNull() {
+		boolean test = MsgParser.isForSpecificUser(null);
 	}
 
 	/**
@@ -44,7 +62,8 @@ public class MsgParserJunitTest extends TestCase {
 	 * combinations) The separator between the recipient-name and the message is
 	 * a blank.
 	 */
-	public void testGetRecipientUsername() {
+	@Test
+	public void testGetRecipientFromMsg() {
 		assertEquals("testUser", MsgParser.getRecipientFromMsg("/testUser Ab hier kommt die Meldung"));
 
 		assertEquals("testUserAbhierkommtdieMeldung", MsgParser.getRecipientFromMsg("/testUserAbhierkommtdieMeldung"));
@@ -53,15 +72,23 @@ public class MsgParserJunitTest extends TestCase {
 		assertEquals("", MsgParser.getRecipientFromMsg("/"));
 
 		assertEquals("", MsgParser.getRecipientFromMsg("\testUser Abhier kommt die Meldung"));
-		assertEquals("", MsgParser.getRecipientFromMsg(null));
 	}
 
 	/**
-	 * Tests, if the real message form the message with indicator +
+	 * If a message is null the test should fail with a
+	 * IllegalArgumentException.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetRecipientFromMsgNull() {
+		String test = MsgParser.getRecipientFromMsg(null);
+	}
+
+	/**
+	 * Tests, if the real message out of the message with indicator +
 	 * recipient-username + message is returned.
 	 */
+	@Test
 	public void testGetMsgPartFromMsg() {
-
 		assertEquals("Ab hier kommt die Meldung", MsgParser.getMsgPartFromMsg("/testUser Ab hier kommt die Meldung"));
 
 		assertEquals("", MsgParser.getMsgPartFromMsg("/testUserAbhierkommtdieMeldung"));
@@ -71,7 +98,16 @@ public class MsgParserJunitTest extends TestCase {
 
 		assertEquals("\testUser Abhier kommt die Meldung",
 				MsgParser.getMsgPartFromMsg("\testUser Abhier kommt die Meldung"));
-		assertEquals("", MsgParser.getMsgPartFromMsg(null));
-
 	}
+
+	/**
+	 * If a message is null the test should fail with a
+	 * IllegalArgumentException.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetMsgPartFromMsgNull() {
+
+		String test = MsgParser.getMsgPartFromMsg(null);
+	}
+
 }
