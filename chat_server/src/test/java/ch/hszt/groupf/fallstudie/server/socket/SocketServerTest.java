@@ -6,7 +6,6 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.security.Permission;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,7 +32,7 @@ public class SocketServerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		System.setSecurityManager(new NoExitSecurityManagerTest());
+		System.setSecurityManager(new NoExitSecurityManager());
 		// _socketServer = new SocketServer(ServerDefaultConfig.SERVERPORT) {
 		// @Override
 		// protected ServerSocket newServerSocket(int inServerPort) throws
@@ -61,7 +60,7 @@ public class SocketServerTest {
 					throw new IOException();
 				}
 			};
-		} catch (ExitExceptionTest e) {
+		} catch (ExitException e) {
 			assertEquals("Exit status", 0, e.status);
 		}
 
@@ -90,33 +89,6 @@ public class SocketServerTest {
 	@Test
 	public void testAddUserToMap() {
 		fail("Not yet implemented");
-	}
-
-	protected static class ExitExceptionTest extends SecurityException {
-		public final int status;
-
-		public ExitExceptionTest(int status) {
-			super("There is no escape!");
-			this.status = status;
-		}
-	}
-
-	private static class NoExitSecurityManagerTest extends SecurityManager {
-		@Override
-		public void checkPermission(Permission perm) {
-			// allow anything.
-		}
-
-		@Override
-		public void checkPermission(Permission perm, Object context) {
-			// allow anything.
-		}
-
-		@Override
-		public void checkExit(int status) {
-			super.checkExit(status);
-			throw new ExitExceptionTest(status);
-		}
 	}
 
 }
