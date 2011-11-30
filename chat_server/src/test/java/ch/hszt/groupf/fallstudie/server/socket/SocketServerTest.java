@@ -92,7 +92,7 @@ public class SocketServerTest {
 		fail("Not yet implemented");
 	}
 
-	protected static class ExitException extends SecurityException {
+	public static class ExitException extends SecurityException {
 		public final int status;
 
 		public ExitException(int status) {
@@ -101,7 +101,7 @@ public class SocketServerTest {
 		}
 	}
 
-	private static class NoExitSecurityManager extends SecurityManager {
+	public static class NoExitSecurityManager extends SecurityManager {
 		@Override
 		public void checkPermission(Permission perm) {
 			// allow anything.
