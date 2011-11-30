@@ -11,16 +11,19 @@
 package ch.hszt.groupf.fallstudie.client.gui;
 
 import java.awt.event.KeyEvent;
-import java.net.InetAddress;
+import java.io.IOException;
 
-import ch.hszt.students.groupf.client.controller.ClientController;
-import ch.hszt.students.groupf.client.controller.UserInterfaceIfc;
+import ch.hszt.groupf.fallstudie.client.controller.ClientController;
+import ch.hszt.groupf.fallstudie.client.controller.UserInterfaceIfc;
+import ch.hszt.groupf.fallstudie.client.log.Log;
 
 /**
  * 
- * @author rest
+ * @author
  */
-public class ChatClientGUI extends javax.swing.JFrame implements UserInterfaceIfc {
+
+public class ChatClientGUI  extends javax.swing.JFrame implements
+		UserInterfaceIfc {
 
 	private final ClientController _controller;
 
@@ -46,140 +49,185 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterfaceIf
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed"
+	// <editor-fold defaultstate="collapsed"
+	// desc="Generated Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        _jTxtAReceived = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        _jTxtAInput = new javax.swing.JTextArea();
-        _jBtnSend = new javax.swing.JButton();
-        _jLblConnLbl = new javax.swing.JLabel();
-        _jLblConnStatus = new javax.swing.JLabel();
-        _jMenuBar = new javax.swing.JMenuBar();
-        _jMenuConn = new javax.swing.JMenu();
-        _jMenuItemOpConn = new javax.swing.JMenuItem();
-        _jMenuItemClCon = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        _jMenuHelp = new javax.swing.JMenu();
-        _jMenuItemHlpCmd = new javax.swing.JMenuItem();
-        _jMenuItemHlpAbout = new javax.swing.JMenuItem();
+		_buttonGroupForLog = new javax.swing.ButtonGroup();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		_jTxtAReceived = new javax.swing.JTextArea();
+		jScrollPane2 = new javax.swing.JScrollPane();
+		_jTxtAInput = new javax.swing.JTextArea();
+		_jBtnSend = new javax.swing.JButton();
+		_jLblConnLbl = new javax.swing.JLabel();
+		_jLblConnStatus = new javax.swing.JLabel();
+		jLabelLog = new javax.swing.JLabel();
+		_jMenuBar = new javax.swing.JMenuBar();
+		_jMenuConn = new javax.swing.JMenu();
+		_jMenuItemOpConn = new javax.swing.JMenuItem();
+		_jMenuItemClCon = new javax.swing.JMenuItem();
+		_jMenuHelp = new javax.swing.JMenu();
+		_jMenuItemHlpCmd = new javax.swing.JMenuItem();
+		_jMenuItemHlpAbout = new javax.swing.JMenuItem();
+		jMenuLog = new javax.swing.JMenu();
+		jRadioButtonMenuLogisOff = new javax.swing.JRadioButtonMenuItem();
+		jRadioButtonMenuLogIsOn = new javax.swing.JRadioButtonMenuItem();
+		jMenuItemSelectFile = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("IRCv2 Chat Client");
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setTitle("Fallstudie: Chat Client by groupf");
 
-        _jTxtAReceived.setColumns(20);
-        _jTxtAReceived.setEditable(false);
-        _jTxtAReceived.setLineWrap(true);
-        _jTxtAReceived.setRows(5);
-        jScrollPane1.setViewportView(_jTxtAReceived);
+		_jTxtAReceived.setColumns(20);
+		_jTxtAReceived.setEditable(false);
+		_jTxtAReceived.setLineWrap(true);
+		_jTxtAReceived.setRows(5);
+		jScrollPane1.setViewportView(_jTxtAReceived);
 
-        _jTxtAInput.setColumns(20);
-        _jTxtAInput.setLineWrap(true);
-        _jTxtAInput.setRows(5);
-        _jTxtAInput.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                onKeyPressed(evt);
-            }
-        });
-        jScrollPane2.setViewportView(_jTxtAInput);
+		_jTxtAInput.setColumns(20);
+		_jTxtAInput.setLineWrap(true);
+		_jTxtAInput.setRows(5);
+		_jTxtAInput.addKeyListener(new java.awt.event.KeyAdapter() {
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				onKeyPressed(evt);
+			}
+		});
+		jScrollPane2.setViewportView(_jTxtAInput);
 
-        _jBtnSend.setText("Send");
-        _jBtnSend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onSendActionPerformed(evt);
-            }
-        });
+		_jBtnSend.setText("Send");
+		_jBtnSend.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				onSendActionPerformed(evt);
+			}
+		});
 
-        _jLblConnLbl.setText("Connection Status:");
+		_jLblConnLbl.setText("Connection Status:");
 
-        _jLblConnStatus.setText("Not connected");
+		_jLblConnStatus.setText("Not connected");
 
-        _jMenuConn.setText("Connection");
+		jLabelLog.setText("Log is off");
 
-        _jMenuItemOpConn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
-        _jMenuItemOpConn.setText("Open Connection");
-        _jMenuItemOpConn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onOpenConnection(evt);
-            }
-        });
-        _jMenuConn.add(_jMenuItemOpConn);
+		_jMenuConn.setText("Connection");
 
-        _jMenuItemClCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        _jMenuItemClCon.setText("Close Connection");
-        _jMenuItemClCon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onCloseConnection(evt);
-            }
-        });
-        _jMenuConn.add(_jMenuItemClCon);
+		_jMenuItemOpConn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_Y,
+				java.awt.event.InputEvent.CTRL_MASK));
+		_jMenuItemOpConn.setText("Open Connection");
+		_jMenuItemOpConn.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				onOpenConnection(evt);
+			}
+		});
+		_jMenuConn.add(_jMenuItemOpConn);
 
-        _jMenuBar.add(_jMenuConn);
+		_jMenuItemClCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_X,
+				java.awt.event.InputEvent.CTRL_MASK));
+		_jMenuItemClCon.setText("Close Connection");
+		_jMenuItemClCon.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				onCloseConnection(evt);
+			}
+		});
+		_jMenuConn.add(_jMenuItemClCon);
 
-        jMenu1.setText("Options");
+		_jMenuBar.add(_jMenuConn);
 
-        jCheckBoxMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("Log on");
-        jMenu1.add(jCheckBoxMenuItem1);
+		_jMenuHelp.setText("Help");
 
-        jCheckBoxMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("Log off");
-        jMenu1.add(jCheckBoxMenuItem2);
+		_jMenuItemHlpCmd.setText("Commands");
+		_jMenuHelp.add(_jMenuItemHlpCmd);
 
-        _jMenuBar.add(jMenu1);
+		_jMenuItemHlpAbout.setText("About");
+		_jMenuHelp.add(_jMenuItemHlpAbout);
 
-        _jMenuHelp.setText("Help");
+		_jMenuBar.add(_jMenuHelp);
 
-        _jMenuItemHlpCmd.setText("Commands");
-        _jMenuHelp.add(_jMenuItemHlpCmd);
+		jMenuLog.setText("Log");
+		_buttonGroupForLog.add(jRadioButtonMenuLogisOff);
+		_buttonGroupForLog.add(jRadioButtonMenuLogIsOn);
+		initLogMenu();
 
-        _jMenuItemHlpAbout.setText("About");
-        _jMenuHelp.add(_jMenuItemHlpAbout);
+		jMenuLog.add(jMenuItemSelectFile);
 
-        _jMenuBar.add(_jMenuHelp);
+		_jMenuBar.add(jMenuLog);
 
-        setJMenuBar(_jMenuBar);
+		setJMenuBar(_jMenuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(_jLblConnLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(_jLblConnStatus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
-                        .addComponent(_jBtnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(_jLblConnLbl)
-                        .addComponent(_jLblConnStatus))
-                    .addComponent(_jBtnSend))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
+				getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setHorizontalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(
+														jScrollPane2,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														635, Short.MAX_VALUE)
+												.addComponent(
+														jScrollPane1,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														635, Short.MAX_VALUE)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addComponent(
+																		_jLblConnLbl)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																.addComponent(
+																		_jLblConnStatus)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																		337,
+																		Short.MAX_VALUE)
+																.addComponent(
+																		_jBtnSend,
+																		javax.swing.GroupLayout.PREFERRED_SIZE,
+																		79,
+																		javax.swing.GroupLayout.PREFERRED_SIZE))
+												.addComponent(
+														jLabelLog,
+														javax.swing.GroupLayout.Alignment.TRAILING))
+								.addContainerGap()));
+		layout.setVerticalGroup(layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						layout.createSequentialGroup()
+								.addComponent(jLabelLog)
+								.addGap(4, 4, 4)
+								.addComponent(jScrollPane1,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										224,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(jScrollPane2,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										219,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addGroup(
+														layout.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.BASELINE)
+																.addComponent(
+																		_jLblConnLbl)
+																.addComponent(
+																		_jLblConnStatus))
+												.addComponent(_jBtnSend))
+								.addContainerGap(
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+		pack();
+	}// </editor-fold>//GEN-END:initComponents
 
 	private void onKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_onKeyPressed
 		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -203,15 +251,8 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterfaceIf
 	}
 
 	private void onOpenConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onOpenConnection
-		ChatClientConnGUI clientConnGUI = new ChatClientConnGUI(this, true);
-		clientConnGUI.setVisible(true);
-		String username = clientConnGUI.getUserName();
-		InetAddress serverAddress = clientConnGUI.getServerAddress();
-		int serverPort = clientConnGUI.getServerPort();
-		if (serverAddress != null) {
-			_controller.connect(serverAddress, serverPort, username);
-		}
-	}// GEN-LAST:event_onOpenConnection
+
+	}
 
 	private void onCloseConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onCloseConnection
 		// TODO add your handling code here:
@@ -232,24 +273,25 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterfaceIf
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+					.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
-					ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
+					.log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
 
@@ -260,25 +302,92 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterfaceIf
 		});
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton _jBtnSend;
-    private javax.swing.JLabel _jLblConnLbl;
-    private javax.swing.JLabel _jLblConnStatus;
-    private javax.swing.JMenuBar _jMenuBar;
-    private javax.swing.JMenu _jMenuConn;
-    private javax.swing.JMenu _jMenuHelp;
-    private javax.swing.JMenuItem _jMenuItemClCon;
-    private javax.swing.JMenuItem _jMenuItemHlpAbout;
-    private javax.swing.JMenuItem _jMenuItemHlpCmd;
-    private javax.swing.JMenuItem _jMenuItemOpConn;
-    private javax.swing.JTextArea _jTxtAInput;
-    private javax.swing.JTextArea _jTxtAReceived;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JButton _jBtnSend;
+	private javax.swing.JLabel _jLblConnLbl;
+	private javax.swing.JLabel _jLblConnStatus;
+	private javax.swing.JMenuBar _jMenuBar;
+	private javax.swing.JMenu _jMenuConn;
+	private javax.swing.JMenu _jMenuHelp;
+	private javax.swing.JMenuItem _jMenuItemClCon;
+	private javax.swing.JMenuItem _jMenuItemHlpAbout;
+	private javax.swing.JMenuItem _jMenuItemHlpCmd;
+	private javax.swing.JMenuItem _jMenuItemOpConn;
+	private javax.swing.JTextArea _jTxtAInput;
+	private javax.swing.JTextArea _jTxtAReceived;
+	private javax.swing.ButtonGroup _buttonGroupForLog;
+	private javax.swing.JLabel jLabelLog;
+	private javax.swing.JMenuItem jMenuItemSelectFile;
+	private javax.swing.JMenu jMenuLog;
+	private javax.swing.JRadioButtonMenuItem jRadioButtonMenuLogisOff;
+	private javax.swing.JRadioButtonMenuItem jRadioButtonMenuLogIsOn;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JScrollPane jScrollPane2;
+	private Log myLog = null;
+	private boolean _logisOn = false;
+
+	// End of variables declaration//GEN-END:variables
+
+	private void initLogMenu() {
+
+		jRadioButtonMenuLogisOff.setSelected(true);
+		jRadioButtonMenuLogisOff.setText("Log is off");
+		jMenuLog.add(jRadioButtonMenuLogisOff);
+
+		jRadioButtonMenuLogIsOn.setSelected(false);
+		jRadioButtonMenuLogIsOn.setText("Log is on");
+		jMenuLog.add(jRadioButtonMenuLogIsOn);
+
+		/**
+		 * Action Listener for set Log on
+		 * If this is the first time you turn log on you have to choose a text file where to write the log in
+		 */
+		jRadioButtonMenuLogIsOn	.addActionListener((new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+					jLabelLog.setText("Log is on");
+
+					if(myLog==null) {
+						createAndChooseLogTextFile();
+						_logisOn=true;
+					}
+					else _logisOn = true;
+					System.out.println("Das Log wurde erfolgreich eingeschaltet.");
+					}
+				}));
+		
+		jRadioButtonMenuLogisOff
+		.addActionListener((new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			jLabelLog.setText("Log is off");
+_logisOn = false;
+System.out.println("Das Log wurde erfolgreich ausgeschaltet");
+			}
+		}));
+
+
+		jMenuItemSelectFile.setText("Select Log File");
+		jMenuItemSelectFile
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						createAndChooseLogTextFile();
+
+					}
+				});
+
+	}
+	
+	
+	private void createAndChooseLogTextFile(){
+		try {
+			myLog = new Log();
+		} catch (IOException e) {
+			System.out.println("Das Log konnte nich erstellt werden...");
+			e.printStackTrace();
+		}
+		
+		System.out.println("this is a createAndChooseLogTextFile Test");
+	}
+	
 
 	public void onReceivedMsg(String inMessage) {
 		_jTxtAReceived.append(inMessage + System.getProperty("line.separator"));

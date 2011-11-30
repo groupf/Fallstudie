@@ -8,7 +8,8 @@
  *
  * Created on 27.10.2011, 12:12:23
  */
-package ch.hszt.groupf.falstudie.client.gui;
+
+package ch.hszt.groupf.fallstudie.client.gui;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
