@@ -33,7 +33,7 @@ public class SocketServerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		System.setSecurityManager(new NoExitSecurityManager());
+		System.setSecurityManager(new NoExitSecurityManagerTest());
 		// _socketServer = new SocketServer(ServerDefaultConfig.SERVERPORT) {
 		// @Override
 		// protected ServerSocket newServerSocket(int inServerPort) throws
@@ -61,7 +61,7 @@ public class SocketServerTest {
 					throw new IOException();
 				}
 			};
-		} catch (ExitException e) {
+		} catch (ExitExceptionTest e) {
 			assertEquals("Exit status", 0, e.status);
 		}
 
@@ -92,16 +92,16 @@ public class SocketServerTest {
 		fail("Not yet implemented");
 	}
 
-	public static class ExitException extends SecurityException {
+	protected static class ExitExceptionTest extends SecurityException {
 		public final int status;
 
-		public ExitException(int status) {
+		public ExitExceptionTest(int status) {
 			super("There is no escape!");
 			this.status = status;
 		}
 	}
 
-	public static class NoExitSecurityManager extends SecurityManager {
+	private static class NoExitSecurityManagerTest extends SecurityManager {
 		@Override
 		public void checkPermission(Permission perm) {
 			// allow anything.
@@ -115,7 +115,7 @@ public class SocketServerTest {
 		@Override
 		public void checkExit(int status) {
 			super.checkExit(status);
-			throw new ExitException(status);
+			throw new ExitExceptionTest(status);
 		}
 	}
 
