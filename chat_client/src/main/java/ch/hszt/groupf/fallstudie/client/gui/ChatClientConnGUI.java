@@ -8,7 +8,7 @@
  *
  * Created on 27.10.2011, 12:12:23
  */
-package ch.hszt.groupf.falstudie.client.gui;
+package ch.hszt.groupf.fallstudie.client.gui;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -77,8 +77,7 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 			}
 		});
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,22 +85,15 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 						layout.createSequentialGroup()
 								.addContainerGap()
 								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel2)
-												.addComponent(jLabel3)
-												.addComponent(jLabel1))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(jLabel2).addComponent(jLabel3).addComponent(jLabel1))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
+										layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 												.addGroup(
 														layout.createSequentialGroup()
-																.addComponent(
-																		jTextField3,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		50,
+																.addComponent(jTextField3,
+																		javax.swing.GroupLayout.PREFERRED_SIZE, 50,
 																		javax.swing.GroupLayout.PREFERRED_SIZE)
 																.addContainerGap())
 												.addGroup(
@@ -125,62 +117,40 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 																				.addContainerGap())
 																.addGroup(
 																		layout.createSequentialGroup()
-																				.addComponent(
-																						jButton1)
+																				.addComponent(jButton1)
 																				.addPreferredGap(
 																						javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																						42,
-																						Short.MAX_VALUE)
-																				.addComponent(
-																						jButton2)
-																				.addGap(22,
-																						22,
-																						22))))));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel1)
-												.addComponent(
-														jTextField1,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel2)
-												.addComponent(
-														jTextField2,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel3)
-												.addComponent(
-														jTextField3,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addGap(18, 18, 18)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jButton2)
-												.addComponent(jButton1))
-								.addContainerGap(
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+																						42, Short.MAX_VALUE)
+																				.addComponent(jButton2)
+																				.addGap(22, 22, 22))))));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel1)
+										.addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel2)
+										.addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jLabel3)
+										.addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addGap(18, 18, 18)
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(jButton2).addComponent(jButton1))
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -208,9 +178,8 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 			addr = InetAddress.getByName(jTextField2.getText());
 		} catch (UnknownHostException e) {
 			// TODO evtl. Log Appender
-			JOptionPane.showMessageDialog(this,
-					"The given Hostname could not be resolved!",
-					"Unknown Host", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "The given Hostname could not be resolved!", "Unknown Host",
+					JOptionPane.ERROR_MESSAGE);
 			// e.printStackTrace();
 		}
 		return addr;
@@ -235,29 +204,24 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(
-					ChatClientConnGUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientConnGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(
-					ChatClientConnGUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientConnGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(
-					ChatClientConnGUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientConnGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(
-					ChatClientConnGUI.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientConnGUI.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
 		}
 		// </editor-fold>
 
@@ -265,8 +229,7 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				ChatClientConnGUI dialog = new ChatClientConnGUI(
-						new javax.swing.JFrame(), true);
+				ChatClientConnGUI dialog = new ChatClientConnGUI(new javax.swing.JFrame(), true);
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
 					@Override
