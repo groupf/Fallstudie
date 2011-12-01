@@ -89,6 +89,7 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	public void send(String message) {
 		try {
+			if(_logisOn) logger.writeLog(message);
 			_chatClient.sendMsg(message);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -106,6 +107,7 @@ public void setLogger(File file) throws IOException{
 }
 
 public void turnLogOff(){
+	if(_logisOn) logger.writeLogBeforeTurnOff();
 	_logisOn = false;
 	
 }

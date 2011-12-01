@@ -15,6 +15,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -257,8 +258,15 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 	}
 
 	private void onOpenConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onOpenConnection
-
-	}
+		ChatClientConnGUI clientConnGUI = new ChatClientConnGUI(this, true);
+		clientConnGUI.setVisible(true);
+		String username = clientConnGUI.getUserName();
+		InetAddress serverAddress = clientConnGUI.getServerAddress();
+		int serverPort = clientConnGUI.getServerPort();
+		if (serverAddress != null) {
+			_controller.connect(serverAddress, serverPort, username);
+		}
+	}// GEN-LAST:event_onOpenConnection
 
 	private void onCloseConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onCloseConnection
 		// TODO add your handling code here:

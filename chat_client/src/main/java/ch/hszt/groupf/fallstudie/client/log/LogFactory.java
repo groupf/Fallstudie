@@ -10,10 +10,11 @@ import java.util.Date;
 
 public class LogFactory {
 
-//	private FileOutputStream _fos;
 	private BufferedWriter _bufferedWriter;
 	private FileWriter _fstream;
 	private File _myFile;
+	private DateFormat dateFormat;
+	Date date;
 
 	public LogFactory(File file) throws IOException {
 //		JFileChooser _fileChooser = new JFileChooser();
@@ -26,25 +27,40 @@ public class LogFactory {
 			//_myFile = _fileChooser.getSelectedFile();
 			_fstream = new FileWriter(_myFile);
 			_bufferedWriter = new BufferedWriter(_fstream);
+			dateFormat 	= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//			date = new Date();
 			writeFirstLogAfterTurnedOn();
 		}
 
 //	}
 
 	public void writeFirstLogAfterTurnedOn() {
-
+//		dateFormat 	= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		date = new Date();
 		writeLog("The Log has turned on:");
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		writeLog(dateFormat.format(date));
-
 		writeLog("****************************************");
-		writeLogJustANewLine();
+	}
+	
+	public void writeLogBeforeTurnOff() {
+//		dateFormat 	= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		date = new Date();
+		writeLog("The Log turned off:");
+		writeLog("****************************************");
 	}
 
+	
+	/**
+	 * The log has the format: YYYYY/MM/DD: <logtext>
+	 * e.g. 2011/12/01 20:55:33: test log
+	 * 
+	 * @param string This is the logging string
+	 */
 	public void writeLog(String string) {
-
+//		dateFormat 	= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
 		try {
+		
+			_bufferedWriter.write(dateFormat.format(date) + ": ");
 			_bufferedWriter.write(string);
 			_bufferedWriter.newLine();
 			_bufferedWriter.flush();
