@@ -11,29 +11,63 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.hszt.groupf.fallstudie.server.srvconfig.ServerDefaultConfig;
+
+/**
+ * The SocketServer Class contains the most important Part of the Chat-Server.
+ * It listens for incoming Chat-Client connections, opens a new Socket due to
+ * the that request and starts a new ServerThread which corresponds to that new
+ * Chat-Client connection. The open connections are kept in a Map with the
+ * username as a Key and the DataOutputStream as the value from the
+ * user-corresponding Socket.
+ * 
+ * @author rest
+ * 
+ */
 public class SocketServer {
 
 	final static Logger logger = LoggerFactory.getLogger(SocketServer.class);
 	private ServerSocket _serverSocket;
 	private Map<String, DataOutputStream> _openOutputStreams = new Hashtable<String, DataOutputStream>();
 
+	/**
+	 * The Constructor starts the SocketServer.
+	 * 
+	 * @param inServerPort
+	 *            the port on which the java.net.ServerSocket starts to listen.
+	 */
 	public SocketServer(int inServerPort) {
 
 		listen(inServerPort);
 	}
 
+	/**
+	 * 
+	 * @param inServerPort
+	 */
 	private void listen(int inServerPort) {
 
 		try {
-			_serverSocket = new ServerSocket(inServerPort);
-		} catch (IOException e) {
+			_serverSocket = newServerSocket(inServerPort);
+
+		} catch (IllegalArgumentException e) {
+			logger.info("Tried to start the ServerSocket on a illegal portnumber! Server will be started on the default port "
+					+ ServerDefaultConfig.SERVERPORT);
+
+			try {
+				_serverSocket = newServerSocket(ServerDefaultConfig.SERVERPORT);
+			} catch (IOException e1) {
+				logger.error("Unable to start the Server on Port " + inServerPort + ". Server will be stopped!");
+				System.exit(0);
+			}
+		} catch (IOException e2) {
 
 			logger.error("Unable to start the Server on Port " + inServerPort + ". Server will be stopped!");
 			// e.printStackTrace();
 			System.exit(0);
 		}
 
-		while (true) {
+		while (!(_serverSocket.isClosed())) {
 			// BufferedReader reader = null;
 			// PrintWriter writer = null;
 
@@ -48,8 +82,8 @@ public class SocketServer {
 				// InputStreamReader(singleSocket.getInputStream()));
 
 				// String socketUserName = reader.readLine();
-				String socketUserName = (new DataInputStream(singleSocket.getInputStream())).readUTF();
-				DataOutputStream doutStream = new DataOutputStream(singleSocket.getOutputStream());
+				String socketUserName = getIncomingSocketUserName(singleSocket);
+				DataOutputStream doutStream = getDosFromSocket(singleSocket);
 
 				addUserToMap(socketUserName, doutStream);
 				// _openOutputStreams.put(socketUserName, doutStream);
@@ -67,6 +101,16 @@ public class SocketServer {
 		}
 	}
 
+	protected String getIncomingSocketUserName(Socket inSocket) throws IOException, IllegalArgumentException {
+		// TODO check the received username if it is in a legal pattern.
+		// otherwise throw IllegalArgumentException
+		return (new DataInputStream(inSocket.getInputStream())).readUTF();
+	}
+
+	protected DataOutputStream getDosFromSocket(Socket inSocket) throws IOException {
+		return new DataOutputStream(inSocket.getOutputStream());
+	}
+
 	private void addUserToMap(String inUserName, DataOutputStream dos) throws IllegalArgumentException {
 		synchronized (_openOutputStreams) {
 			if (_openOutputStreams.containsKey(inUserName)) {
@@ -76,7 +120,14 @@ public class SocketServer {
 			// UserNameParser
 
 			_openOutputStreams.put(inUserName, dos);
+			if (logger.isDebugEnabled()) {
+				logger.debug("User added to Map: " + inUserName);
+			}
 		}
+	}
+
+	protected ServerSocket newServerSocket(int inServerPort) throws IOException {
+		return new ServerSocket(inServerPort);
 	}
 
 	protected void sendJoinedMsg(String inUserName) {
@@ -125,10 +176,13 @@ public class SocketServer {
 		}
 	}
 
-	protected void removeConnection(Socket inSocket) {
+	protected void removeConnection(String inUserName, Socket inSocket) {
 		synchronized (_openOutputStreams) {
 			// TODO Appender to logger that a Connection is removed
-			_openOutputStreams.remove(inSocket);
+			_openOutputStreams.remove(inUserName);
+			if (logger.isDebugEnabled()) {
+				logger.debug("User removed from Map: " + inUserName);
+			}
 
 			try {
 				inSocket.close();

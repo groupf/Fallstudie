@@ -18,8 +18,45 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.10</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>org.mockito</groupId>
+    	<artifactId>mockito-all</artifactId>
+    	<version>1.9.0-rc1</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-api</artifactId>
+    	<version>1.6.4</version>
+    </dependency>
+    <dependency>
+    	<groupId>ch.qos.logback</groupId>
+    	<artifactId>logback-classic</artifactId>
+    	<version>1.0.0</version>
+    </dependency>
+    <dependency>
+    	<groupId>ch.qos.logback</groupId>
+    	<artifactId>logback-core</artifactId>
+    	<version>1.0.0</version>
+    </dependency>
   </dependencies>
+  <!-- build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>ch.hszt.groupf.fallstudie.client.controller.ClientController</mainClass>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build-->
 </project>
