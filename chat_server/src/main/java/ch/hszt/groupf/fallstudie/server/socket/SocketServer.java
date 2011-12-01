@@ -67,7 +67,7 @@ public class SocketServer {
 			System.exit(0);
 		}
 
-		while (true) {
+		while (!(_serverSocket.isClosed())) {
 			// BufferedReader reader = null;
 			// PrintWriter writer = null;
 
@@ -82,8 +82,8 @@ public class SocketServer {
 				// InputStreamReader(singleSocket.getInputStream()));
 
 				// String socketUserName = reader.readLine();
-				String socketUserName = (new DataInputStream(singleSocket.getInputStream())).readUTF();
-				DataOutputStream doutStream = new DataOutputStream(singleSocket.getOutputStream());
+				String socketUserName = getIncomingSocketUserName(singleSocket);
+				DataOutputStream doutStream = getDosFromSocket(singleSocket);
 
 				addUserToMap(socketUserName, doutStream);
 				// _openOutputStreams.put(socketUserName, doutStream);
@@ -101,6 +101,16 @@ public class SocketServer {
 		}
 	}
 
+	protected String getIncomingSocketUserName(Socket inSocket) throws IOException, IllegalArgumentException {
+		// TODO check the received username if it is in a legal pattern.
+		// otherwise throw IllegalArgumentException
+		return (new DataInputStream(inSocket.getInputStream())).readUTF();
+	}
+
+	protected DataOutputStream getDosFromSocket(Socket inSocket) throws IOException {
+		return new DataOutputStream(inSocket.getOutputStream());
+	}
+
 	private void addUserToMap(String inUserName, DataOutputStream dos) throws IllegalArgumentException {
 		synchronized (_openOutputStreams) {
 			if (_openOutputStreams.containsKey(inUserName)) {
@@ -110,6 +120,9 @@ public class SocketServer {
 			// UserNameParser
 
 			_openOutputStreams.put(inUserName, dos);
+			if (logger.isDebugEnabled()) {
+				logger.debug("User added to Map: " + inUserName);
+			}
 		}
 	}
 
@@ -163,10 +176,13 @@ public class SocketServer {
 		}
 	}
 
-	protected void removeConnection(Socket inSocket) {
+	protected void removeConnection(String inUserName, Socket inSocket) {
 		synchronized (_openOutputStreams) {
 			// TODO Appender to logger that a Connection is removed
-			_openOutputStreams.remove(inSocket);
+			_openOutputStreams.remove(inUserName);
+			if (logger.isDebugEnabled()) {
+				logger.debug("User removed from Map: " + inUserName);
+			}
 
 			try {
 				inSocket.close();

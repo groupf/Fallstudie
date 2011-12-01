@@ -5,7 +5,7 @@ Tests run: 6, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.047 sec <<< FA
 testSendJoinedMsg(ch.hszt.groupf.fallstudie.server.socket.SocketServerTest)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendJoinedMsg(SocketServerTest.java:72)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendJoinedMsg(SocketServerTest.java:71)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -40,7 +40,7 @@ java.lang.AssertionError: Not yet implemented
 testSendToAll(ch.hszt.groupf.fallstudie.server.socket.SocketServerTest)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToAll(SocketServerTest.java:77)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToAll(SocketServerTest.java:76)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -75,7 +75,7 @@ java.lang.AssertionError: Not yet implemented
 testSendToSpecificUser(ch.hszt.groupf.fallstudie.server.socket.SocketServerTest)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToSpecificUser(SocketServerTest.java:82)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToSpecificUser(SocketServerTest.java:81)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -110,7 +110,7 @@ java.lang.AssertionError: Not yet implemented
 testRemoveConnection(ch.hszt.groupf.fallstudie.server.socket.SocketServerTest)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testRemoveConnection(SocketServerTest.java:87)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testRemoveConnection(SocketServerTest.java:86)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -145,7 +145,7 @@ java.lang.AssertionError: Not yet implemented
 testAddUserToMap(ch.hszt.groupf.fallstudie.server.socket.SocketServerTest)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testAddUserToMap(SocketServerTest.java:92)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testAddUserToMap(SocketServerTest.java:91)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)

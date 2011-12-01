@@ -4,6 +4,9 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ch.hszt.groupf.fallstudie.server.msgparser.MsgParser;
 
 /**
@@ -18,6 +21,7 @@ public class ServerThread extends Thread {
 	private SocketServer _server;
 	private Socket _socket;
 	private String _socketUserName;
+	final static Logger logger = LoggerFactory.getLogger(SocketServer.class);
 
 	/**
 	 * 
@@ -70,7 +74,8 @@ public class ServerThread extends Thread {
 			}
 		} catch (IOException e) {
 			// TODO Handle Exception for DataInputStream use a slf4j logger
-			return;
+			_server.removeConnection(_socketUserName, _socket);
+			// return;
 		}
 
 	}
