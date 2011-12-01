@@ -1,22 +1,28 @@
 package ch.hszt.groupf.fallstudie.client.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import ch.hszt.groupf.fallstudie.client.cli.ChatClientCLI;
 import ch.hszt.groupf.fallstudie.client.gui.ChatClientGUI;
-import ch.hszt.groupf.fallstudie.client.socket.ChatClientIfc;
+import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 import ch.hszt.groupf.fallstudie.client.socket.ClientSocket;
-import ch.hszt.groupf.fallstudie.client.socket.SocketClientConsumerIfc;
+import ch.hszt.groupf.fallstudie.client.socket.IfcClientSocket;
+import ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer;
 
 
 
-public class ClientController implements SocketClientConsumerIfc {
+public class ClientController implements IfcSocketClientConsumer {
 
-	private ChatClientIfc _chatClient;
-	private UserInterfaceIfc _userInterface;
-
+	private IfcClientSocket _chatClient;
+	private IfcUserInterface _userInterface;
+	
+	private LogFactory logger = null;
+	private boolean _logisOn = false;
+	
+	
 	public ClientController(boolean startCLI) {
 		_chatClient = new ClientSocket(this);
 
@@ -62,6 +68,7 @@ public class ClientController implements SocketClientConsumerIfc {
 	}
 
 	public void onReceivedMsg(String inMessage) {
+	
 		_userInterface.onReceivedMsg(inMessage);
 
 	}
@@ -90,4 +97,27 @@ public class ClientController implements SocketClientConsumerIfc {
 
 	}
 
+public LogFactory getLogger(){
+	return logger;
+}
+
+public void setLogger(File file) throws IOException{
+	logger = new LogFactory(file);
+}
+
+public void turnLogOff(){
+	_logisOn = false;
+	
+}
+
+public void turnLogOn(){
+	_logisOn = true;
+	
+}
+
+public boolean isLogOn(){
+	return _logisOn;
+	
+}
+	
 }

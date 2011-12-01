@@ -11,21 +11,25 @@
 package ch.hszt.groupf.fallstudie.client.gui;
 
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.net.InetAddress;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
-import ch.hszt.groupf.fallstudie.client.controller.UserInterfaceIfc;
-import ch.hszt.groupf.fallstudie.client.log.Log;
+import ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface;
+import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 
 /**
  * 
  * @author
  */
 public class ChatClientGUI extends javax.swing.JFrame implements
-		UserInterfaceIfc {
+		IfcUserInterface {
 
 	private final ClientController _controller;
 
@@ -325,8 +329,9 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 	private javax.swing.JRadioButtonMenuItem jRadioButtonMenuLogIsOn;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
-	private Log myLog = null;
-	private boolean _logisOn = false;
+	private LogFactory myLog = null;
+
+	// private boolean _logisOn = false;
 
 	// End of variables declaration//GEN-END:variables
 
@@ -341,55 +346,83 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		jMenuLog.add(jRadioButtonMenuLogIsOn);
 
 		/**
-		 * Action Listener for set Log on
-		 * If this is the first time you turn log on you have to choose a text file where to write the log in
+		 * Action Listener for set Log on If this is the first time you turn log
+		 * on you have to choose a text file where to write the log in
 		 */
-		jRadioButtonMenuLogIsOn	.addActionListener((new java.awt.event.ActionListener() {
+		jRadioButtonMenuLogIsOn
+				.addActionListener((new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
-					jLabelLog.setText("Log is on");
+						jLabelLog.setText("Log is on");
 
-					if(myLog==null) {
-						createAndChooseLogTextFile();
-						_logisOn=true;
-					}
-					else _logisOn = true;
-					System.out.println("Das Log wurde erfolgreich eingeschaltet.");
+						if (_controller.getLogger() == null) {
+
+							try {
+								File file = chooseLogTextFile();
+								_controller.setLogger(file);
+							} catch (IOException e) {
+								JFrame frame = new JFrame();
+								JOptionPane.showMessageDialog(frame,
+										"Sorry, I could not turn on the log."
+												+ e);
+							}
+
+							_controller.turnLogOn();
+						} else
+							_controller.turnLogOn();
+						System.out
+								.println("Das Log wurde erfolgreich eingeschaltet.");
 					}
 				}));
-		
-		jRadioButtonMenuLogisOff
-		.addActionListener((new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-			jLabelLog.setText("Log is off");
-_logisOn = false;
-System.out.println("Das Log wurde erfolgreich ausgeschaltet");
-			}
-		}));
 
+		jRadioButtonMenuLogisOff
+				.addActionListener((new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						jLabelLog.setText("Log is off");
+
+						_controller.turnLogOff();
+
+						// _logisOn = false;
+						System.out
+								.println("Das Log wurde erfolgreich ausgeschaltet");
+					}
+				}));
 
 		jMenuItemSelectFile.setText("Select Log File");
 		jMenuItemSelectFile
 				.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						createAndChooseLogTextFile();
+						try {
+							chooseLogTextFile();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
 					}
 				});
 
 	}
-	
-	
-	private void createAndChooseLogTextFile(){
-		try {
-			myLog = new Log();
-		} catch (IOException e) {
-			System.out.println("Das Log konnte nich erstellt werden...");
-			e.printStackTrace();
+
+	private File chooseLogTextFile() throws IOException {
+		BufferedWriter _bufferedWriter;
+		FileWriter _fstream;
+		File _myFile = null;
+		JFileChooser _fileChooser = new JFileChooser();
+
+		int retval = _fileChooser.showOpenDialog(_fileChooser);
+		if (retval == JFileChooser.APPROVE_OPTION) {
+
+			// _myFile = file;
+
+			_myFile = _fileChooser.getSelectedFile();
+			_fstream = new FileWriter(_myFile);
+			_bufferedWriter = new BufferedWriter(_fstream);
 		}
-		
-		System.out.println("this is a createAndChooseLogTextFile Test");
+		return _myFile;
+
+		// }
+
 	}
-	
 
 	public void onReceivedMsg(String inMessage) {
 		_jTxtAReceived.append(inMessage + System.getProperty("line.separator"));

@@ -2,35 +2,34 @@ package ch.hszt.groupf.fallstudie.client.log;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.swing.JFileChooser;
-
-public class Log {
+public class LogFactory {
 
 //	private FileOutputStream _fos;
 	private BufferedWriter _bufferedWriter;
 	private FileWriter _fstream;
 	private File _myFile;
 
-	public Log() throws IOException {
-		JFileChooser _fileChooser = new JFileChooser();
+	public LogFactory(File file) throws IOException {
+//		JFileChooser _fileChooser = new JFileChooser();
 
-		int retval = _fileChooser.showOpenDialog(_fileChooser);
-		if (retval == JFileChooser.APPROVE_OPTION) {
+//		int retval = _fileChooser.showOpenDialog(_fileChooser);
+//		if (retval == JFileChooser.APPROVE_OPTION) {
 			// ... The user selected a file, get it, use it.
-			_myFile = _fileChooser.getSelectedFile();
+			_myFile = file;
+			
+			//_myFile = _fileChooser.getSelectedFile();
 			_fstream = new FileWriter(_myFile);
 			_bufferedWriter = new BufferedWriter(_fstream);
 			writeFirstLogAfterTurnedOn();
 		}
 
-	}
+//	}
 
 	public void writeFirstLogAfterTurnedOn() {
 
