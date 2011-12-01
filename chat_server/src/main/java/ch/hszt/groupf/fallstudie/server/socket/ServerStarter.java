@@ -19,11 +19,17 @@ import ch.hszt.groupf.fallstudie.server.srvconfig.ServerDefaultConfig;
 public class ServerStarter {
 	final static Logger logger = LoggerFactory.getLogger(ServerStarter.class);
 
+	/**
+	 * The main Funktion starts the SocketServer (Server Applikation) with a
+	 * specific portnumber.
+	 * 
+	 * @param args
+	 *            actually only the argument of an Integer for a specific
+	 *            serverport is provided.
+	 * 
+	 */
 	public static void main(String[] args) {
-		// // assume SLF4J is bound to logback in the current environment
-		// LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-		// // print logback's internal status
-		// StatusPrinter.print(lc);
+
 		int serverPort = getServerPortToStart(args);
 
 		new SocketServer(serverPort);
@@ -54,7 +60,7 @@ public class ServerStarter {
 							+ ServerDefaultConfig.SERVERPORT + " will be used");
 				}
 			} catch (NumberFormatException e) {
-				// TODO: Append to logger output that the default Serverport
+
 				logger.info("Could not Parse Argument to Integer. Default Port " + ServerDefaultConfig.SERVERPORT
 						+ " will be used");
 
