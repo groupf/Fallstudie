@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: ch.hszt.groupf.fallstudie.server.socket.ServerThreadTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.187 sec <<< FAILURE!
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.188 sec <<< FAILURE!
 testRun(ch.hszt.groupf.fallstudie.server.socket.ServerThreadTest)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)

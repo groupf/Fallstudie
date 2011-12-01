@@ -6,17 +6,21 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ch.hszt.groupf.fallstudie.server.srvconfig.ServerDefaultConfig;
+
 public class SocketServerTest {
 
 	private SocketServer _socketServer;
 	private final ServerSocket _serverSocket = mock(ServerSocket.class);
 	private final ServerThread _serverThread = mock(ServerThread.class);
+	private final Socket _socket = mock(Socket.class);
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -33,13 +37,12 @@ public class SocketServerTest {
 	@Before
 	public void setUp() throws Exception {
 		System.setSecurityManager(new NoExitSecurityManager());
-		// _socketServer = new SocketServer(ServerDefaultConfig.SERVERPORT) {
-		// @Override
-		// protected ServerSocket newServerSocket(int inServerPort) throws
-		// IOException {
-		// return _serverSocket;
-		// }
-		// };
+		_socketServer = new SocketServer(ServerDefaultConfig.SERVERPORT) {
+			@Override
+			protected ServerSocket newServerSocket(int inServerPort) throws IOException {
+				return _serverSocket;
+			}
+		};
 	}
 
 	@After
@@ -54,7 +57,7 @@ public class SocketServerTest {
 	@Test
 	public void testSocketServerStopsOnIOEx() {
 		try {
-			_socketServer = new SocketServer(-1) {
+			new SocketServer(ServerDefaultConfig.SERVERPORT) {
 				@Override
 				protected ServerSocket newServerSocket(int inServerPort) throws IOException {
 					throw new IOException();

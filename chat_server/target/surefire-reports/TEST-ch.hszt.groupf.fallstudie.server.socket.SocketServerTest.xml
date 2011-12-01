@@ -19,7 +19,7 @@
     <property name="basedir" value="D:\Privat\FH-Studium\eclipse-workspace\Fallstudie\chat_server"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_29\jre\lib\endorsed"/>
     <property name="os.arch" value="x86"/>
-    <property name="surefire.real.class.path" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter5329051691970944485.jar"/>
+    <property name="surefire.real.class.path" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter1141597675672276377.jar"/>
     <property name="java.io.tmpdir" value="C:\DOCUME~1\rest\LOCALS~1\Temp\"/>
     <property name="line.separator" value="
 "/>
@@ -27,7 +27,7 @@
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows XP"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.6.0_29\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:/Program Files/Java/jre6/lib/i386;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Acronis\SnapAPI\;C:\Program Files\UltraEdit;C:\Program Files\Windows Imaging\;C:\Program Files\tools\;C:\Program Files\QuickTime\QTSystem\;C:\Programme\apache-maven-2.2.1\bin;C:\Program Files\Java\jdk1.6.0_29\bin;C:\Program Files\CVSNT\;C:\Program Files\Common Files\Nero\Lib\;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.6.0_29\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:/Program Files/Java/jre6/lib/i386;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Acronis\SnapAPI\;C:\Program Files\UltraEdit;C:\Program Files\Windows Imaging\;C:\Program Files\tools\;C:\Program Files\QuickTime\QTSystem\;C:\Programme\apache-maven-2.2.1\bin;C:\Program Files\Java\jdk1.6.0_29\bin;C:\Program Files\CVSNT\;."/>
     <property name="surefire.test.class.path" value="D:\Privat\FH-Studium\eclipse-workspace\Fallstudie\chat_server\target\test-classes;D:\Privat\FH-Studium\eclipse-workspace\Fallstudie\chat_server\target\classes;C:\Documents and Settings\rest\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Documents and Settings\rest\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Documents and Settings\rest\.m2\repository\org\slf4j\slf4j-api\1.6.4\slf4j-api-1.6.4.jar;C:\Documents and Settings\rest\.m2\repository\org\mockito\mockito-all\1.9.0-rc1\mockito-all-1.9.0-rc1.jar;C:\Documents and Settings\rest\.m2\repository\ch\qos\logback\logback-classic\1.0.0\logback-classic-1.0.0.jar;C:\Documents and Settings\rest\.m2\repository\ch\qos\logback\logback-core\1.0.0\logback-core-1.0.0.jar;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
@@ -43,7 +43,7 @@
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.6.0_29\jre"/>
-    <property name="sun.java.command" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter5329051691970944485.jar C:\DOCUME~1\rest\LOCALS~1\Temp\surefire5836072989774353992tmp C:\DOCUME~1\rest\LOCALS~1\Temp\surefire8058355609350212338tmp"/>
+    <property name="sun.java.command" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter1141597675672276377.jar C:\DOCUME~1\rest\LOCALS~1\Temp\surefire5285184293184233746tmp C:\DOCUME~1\rest\LOCALS~1\Temp\surefire8523908437667443914tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="de"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -64,7 +64,7 @@
   <testcase time="0" classname="ch.hszt.groupf.fallstudie.server.socket.SocketServerTest" name="testSendJoinedMsg">
     <failure message="Not yet implemented" type="java.lang.AssertionError">java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendJoinedMsg(SocketServerTest.java:72)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendJoinedMsg(SocketServerTest.java:71)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -100,7 +100,7 @@
   <testcase time="0" classname="ch.hszt.groupf.fallstudie.server.socket.SocketServerTest" name="testSendToAll">
     <failure message="Not yet implemented" type="java.lang.AssertionError">java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToAll(SocketServerTest.java:77)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToAll(SocketServerTest.java:76)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -136,7 +136,7 @@
   <testcase time="0" classname="ch.hszt.groupf.fallstudie.server.socket.SocketServerTest" name="testSendToSpecificUser">
     <failure message="Not yet implemented" type="java.lang.AssertionError">java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToSpecificUser(SocketServerTest.java:82)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testSendToSpecificUser(SocketServerTest.java:81)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -172,7 +172,7 @@
   <testcase time="0" classname="ch.hszt.groupf.fallstudie.server.socket.SocketServerTest" name="testRemoveConnection">
     <failure message="Not yet implemented" type="java.lang.AssertionError">java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testRemoveConnection(SocketServerTest.java:87)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testRemoveConnection(SocketServerTest.java:86)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -208,7 +208,7 @@
   <testcase time="0" classname="ch.hszt.groupf.fallstudie.server.socket.SocketServerTest" name="testAddUserToMap">
     <failure message="Not yet implemented" type="java.lang.AssertionError">java.lang.AssertionError: Not yet implemented
 	at org.junit.Assert.fail(Assert.java:93)
-	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testAddUserToMap(SocketServerTest.java:92)
+	at ch.hszt.groupf.fallstudie.server.socket.SocketServerTest.testAddUserToMap(SocketServerTest.java:91)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)

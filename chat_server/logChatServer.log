@@ -1,0 +1,5 @@
+156  [main] INFO  c.h.g.f.server.socket.ServerStarter - Could not Parse Argument to Integer. Default Port 8090 will be used
+156  [main] INFO  c.h.g.f.server.socket.ServerStarter - Could not Parse Argument to Integer. Default Port 8090 will be used
+298266 [main] DEBUG c.h.g.f.server.socket.SocketServer - User added to Map: rest
+351625 [main] DEBUG c.h.g.f.server.socket.SocketServer - User added to Map: test
+385062 [Thread-2] DEBUG c.h.g.f.server.socket.SocketServer - User added to Map: test

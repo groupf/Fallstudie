@@ -67,7 +67,7 @@ public class SocketServer {
 			System.exit(0);
 		}
 
-		while (true) {
+		while (!(_serverSocket.isClosed())) {
 			// BufferedReader reader = null;
 			// PrintWriter writer = null;
 
@@ -110,6 +110,9 @@ public class SocketServer {
 			// UserNameParser
 
 			_openOutputStreams.put(inUserName, dos);
+			if (logger.isDebugEnabled()) {
+				logger.debug("User added to Map: " + inUserName);
+			}
 		}
 	}
 
@@ -163,10 +166,13 @@ public class SocketServer {
 		}
 	}
 
-	protected void removeConnection(Socket inSocket) {
+	protected void removeConnection(String inUserName, Socket inSocket) {
 		synchronized (_openOutputStreams) {
 			// TODO Appender to logger that a Connection is removed
-			_openOutputStreams.remove(inSocket);
+			_openOutputStreams.remove(inUserName);
+			if (logger.isDebugEnabled()) {
+				logger.debug("User added to Map: " + inUserName);
+			}
 
 			try {
 				inSocket.close();
