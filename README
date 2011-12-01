@@ -1,14 +1,14 @@
-Java / Maven Projekt Groupf: IRCv2
-==================================
+Java Projekt Gruppe F: Chat-Server und Client
+=============================================
+Projekt-Website:
+----------------
+http://www.fallstudie.ulicom.net
+
 
 Installation
 ------------
 
 Fork this projekt using the github functuality.
-
-
-Usage
------
 
     git clone git://github.com/groupf/rivella.git
 
