@@ -7,12 +7,12 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ClientSocket implements ChatClientIfc, Runnable {
+public class ClientSocket implements IfcClientSocket, Runnable {
 
 	private Socket _clientSocket;
 	private DataInputStream _clientDataIn;
 	private DataOutputStream _clientDataOut;
-	private SocketClientConsumerIfc _sktClientConsumer;
+	private IfcSocketClientConsumer _sktClientConsumer;
 	private String _socketUserName;
 
 	// TODO Change _serverAddress to InetAddress or Inet4Address
@@ -20,7 +20,7 @@ public class ClientSocket implements ChatClientIfc, Runnable {
 	// TODO Change _serverPort to a Port-Class
 	private int _serverPort;
 
-	public ClientSocket(SocketClientConsumerIfc inSktClientConsumer) {
+	public ClientSocket(IfcSocketClientConsumer inSktClientConsumer) {
 		if (inSktClientConsumer == null)
 			throw new IllegalArgumentException("inSktClientConsumer must not be null");
 		_sktClientConsumer = inSktClientConsumer;

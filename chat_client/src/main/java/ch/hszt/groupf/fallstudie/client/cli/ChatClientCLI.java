@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
-import ch.hszt.groupf.fallstudie.client.controller.UserInterfaceIfc;
+import ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface;
 
 
-public class ChatClientCLI implements UserInterfaceIfc {
+public class ChatClientCLI implements IfcUserInterface {
 	private boolean _exitCLI = false;
 	private final ClientController _controller;
 
