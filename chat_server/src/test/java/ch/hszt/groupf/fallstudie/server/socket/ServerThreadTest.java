@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class ServerThreadTest {
 
-	private final SocketServer _socketServer = mock(SocketServer.class);
+	private final ChatServer _socketServer = mock(ChatServer.class);
 	private ServerThread _serverThread;
 
 	@BeforeClass

@@ -30,13 +30,13 @@
     <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
       <layout class="ch.qos.logback.classic.PatternLayout">
       	<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-      	<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+      	<!--pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern-->
       	
       </layout>
     </encoder>
   </appender>
   <root level="debug">
     <appender-ref ref="STDOUT" />
-    <appender-ref ref="FILE" />
+    <!--appender-ref ref="FILE" /-->
   </root>
 </configuration>

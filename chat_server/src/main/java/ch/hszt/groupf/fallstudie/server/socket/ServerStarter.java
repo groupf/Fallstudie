@@ -32,7 +32,7 @@ public class ServerStarter {
 
 		int serverPort = getServerPortToStart(args);
 
-		new SocketServer(serverPort);
+		new ChatServer(serverPort);
 
 	}
 

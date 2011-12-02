@@ -18,10 +18,10 @@ import ch.hszt.groupf.fallstudie.server.msgparser.MsgParser;
  */
 public class ServerThread extends Thread {
 
-	private SocketServer _server;
+	private ChatServer _server;
 	private Socket _socket;
 	private String _socketUserName;
-	final static Logger logger = LoggerFactory.getLogger(SocketServer.class);
+	final static Logger logger = LoggerFactory.getLogger(ChatServer.class);
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public class ServerThread extends Thread {
 	 * @param inSocket
 	 * @param inSocketUserName
 	 */
-	public ServerThread(SocketServer inServer, Socket inSocket, String inSocketUserName)
+	public ServerThread(ChatServer inServer, Socket inSocket, String inSocketUserName)
 			throws IllegalArgumentException {
 
 		if ((inServer == null) || (inSocket == null) || (inSocketUserName == null)) {
