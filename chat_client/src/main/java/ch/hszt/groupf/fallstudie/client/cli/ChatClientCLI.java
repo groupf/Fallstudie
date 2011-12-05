@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Currency;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
 import ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface;
@@ -28,16 +29,17 @@ public class ChatClientCLI implements IfcUserInterface {
 		while (!_exitCLI) {
 
 			try {
-				inText = in.readLine();
-				if (inText.contains("\\q")) {
-					_exitCLI = true;
-				}
+				msgParser(in.readLine());
+//				inText = in.readLine();
+//				if (inText.contains("\\q")) {
+//					_exitCLI = true;
+//				}
 				// out.write(strLine, 0, strLine.length());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-
+//			} finally {
+//
 			}
 
 		}
@@ -52,21 +54,32 @@ public class ChatClientCLI implements IfcUserInterface {
 	}
 
 	private void msgParser(String inText)  {
-		if (inText.startsWith("/")) {
-			String[] currentLine = inText.split(" ");
+		// check whether a command is executed
+		String[] currentLine = inText.split(" ");
+
+		if (currentLine[0].startsWith("\\")) {
+			currentLine[0] = currentLine[0].replaceFirst("\\", "");
 			String command = currentLine[0];
-			if (command.equals("/quit")) {
+			
+			if (command.equals("quit")) {
 				System.out.println("quit");
 				//_controller.disconnect();
-			} else if (command.equals("/connect")){
+			} else if (command.equals("connect")){
 				System.out.println("connect");
 				//_controller.connect(currentLine[1], currentLine[2], username)
-			} else if (command.equals("/username")) {
+			} else if (command.equals("username")) {
 				System.out.println("Set Username");
 			} else {
 				System.out.println("command not found");
 			}
 		
+		// check whether the message is private nor not		
+		} else if (currentLine[0].startsWith("/")) {
+			currentLine[0] = currentLine[0].replaceFirst("/", "");
+			String receipt = currentLine[0];
+			System.out.println("sending msg to user " + receipt);
+		} else {
+			System.out.println("sending msg to all users");
 		}
 		
 			//		if (inText.startsWith("/quit")) {
