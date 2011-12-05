@@ -51,6 +51,32 @@ public class ChatClientCLI implements IfcUserInterface {
 
 	}
 
+	private void msgParser(String inText)  {
+		if (inText.startsWith("/")) {
+			String[] currentLine = inText.split(" ");
+			String command = currentLine[0];
+			if (command.equals("/quit")) {
+				System.out.println("quit");
+				//_controller.disconnect();
+			} else if (command.equals("/connect")){
+				System.out.println("connect");
+				//_controller.connect(currentLine[1], currentLine[2], username)
+			} else if (command.equals("/username")) {
+				System.out.println("Set Username");
+			} else {
+				System.out.println("command not found");
+			}
+		
+		}
+		
+			//		if (inText.startsWith("/quit")) {
+//			return "Exit Command";
+//		} else if (){
+//			
+//		} else {
+//			return "Command not found";
+//		}
+	}
 	private void welcomeMsg() {
 
 		System.out.println("Welcome to the CLI-Chat Client IRCv2" + System.getProperty("line.separator"));
