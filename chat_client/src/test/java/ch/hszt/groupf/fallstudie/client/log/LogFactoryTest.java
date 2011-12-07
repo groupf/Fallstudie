@@ -33,29 +33,10 @@ public class LogFactoryTest {
 
 	}
 
-	// @Test
-	// public void testLogFactoryFileWithNull() {
-	// try {
-	// logOutput = null;
-	// LogFactory myLog = new LogFactory(logOutput);
-	// } catch (Exception e) {
-	// assertFalse(false);
-	// // assertTrue(true);
-	// }
-	//
-	// assertFalse(true);
-	// }
-
-	// @Test
-	// public void testLogFactoryString() {
-	// fail("Not yet implemented");
-	// }
-
 	@Test
 	public void testWriteFirstLogAfterTurnedOn() {
 		myLog.writeFirstLogAfterTurnedOn();
 		String s = logOutput.toString();
-		// System.out.println(s);
 
 		String excpected = "The Log turned on:";
 		String excpected2 = "*************************";
@@ -69,7 +50,6 @@ public class LogFactoryTest {
 	public void testWriteLogBeforeTurnOff() {
 		myLog.writeLogBeforeTurnOff();
 		String s = logOutput.toString();
-		// System.out.println(s);
 
 		String excpected = "The Log turned off:";
 		String excpected2 = "*************************";
@@ -96,12 +76,8 @@ public class LogFactoryTest {
 	@Test
 	public void testWriteLogWithDate() {
 		Date dateTest = new Date();
-		// String expected = ": Test my class";
 		myLog.writeLog("Test my class");
 
-		// myLog.writeLog("Test my class Test with special signs @!$/?");
-		// System.out.println(logOutput.toString());
-		// assertTrue(logOutput.toString().contains(expected));
 		String s = dateFormatTest.format(dateTest);
 		assertTrue(logOutput.toString().contains(s));
 	}
