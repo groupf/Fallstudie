@@ -10,6 +10,8 @@
  */
 package ch.hszt.groupf.fallstudie.client.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -27,7 +29,6 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 
 /**
  * 
- * @author
  */
 public class ChatClientGUI extends javax.swing.JFrame implements
 		IfcUserInterface {
@@ -144,9 +145,27 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 		_jMenuItemHlpCmd.setText("Commands");
 		_jMenuHelp.add(_jMenuItemHlpCmd);
+		_jMenuItemHlpCmd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(new JFrame(),
+						"At the moment not implemented.");
+
+			}
+		});
 
 		_jMenuItemHlpAbout.setText("About");
 		_jMenuHelp.add(_jMenuItemHlpAbout);
+		_jMenuItemHlpAbout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(new JFrame(),
+						"At the moment not implemented.");
+
+			}
+		});
 
 		_jMenuBar.add(_jMenuHelp);
 
@@ -269,7 +288,12 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 	}// GEN-LAST:event_onOpenConnection
 
 	private void onCloseConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onCloseConnection
-		// TODO add your handling code here:
+
+		/**
+		 * Here is missing the code for closing a chat-connection from the
+		 * server to the client
+		 */
+
 	}// GEN-LAST:event_onCloseConnection
 
 	/**
@@ -375,6 +399,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 							}
 
 							_controller.turnLogOn();
+							_controller.getLogger().writeFirstLogAfterTurnedOn();
 						} else
 							_controller.turnLogOn();
 						System.out
