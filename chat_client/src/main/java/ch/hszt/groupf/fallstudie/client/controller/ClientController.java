@@ -12,17 +12,14 @@ import ch.hszt.groupf.fallstudie.client.socket.ClientSocket;
 import ch.hszt.groupf.fallstudie.client.socket.IfcClientSocket;
 import ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer;
 
-
-
 public class ClientController implements IfcSocketClientConsumer {
 
 	private IfcClientSocket _chatClient;
 	private IfcUserInterface _userInterface;
-	
+
 	private LogFactory logger = null;
 	private boolean _logisOn = false;
-	
-	
+
 	public ClientController(boolean startCLI) {
 		_chatClient = new ClientSocket(this);
 
@@ -31,6 +28,21 @@ public class ClientController implements IfcSocketClientConsumer {
 
 		} else {
 			_userInterface = new ChatClientGUI(this);
+		}
+
+		// _userInterface.setVisible(true);
+
+	}
+	
+	
+	public ClientController(boolean startCLI, boolean testing) {
+		_chatClient = new ClientSocket(this);
+
+		if (startCLI) {
+			_userInterface = new ChatClientCLI(this, true);
+
+		} else {
+			_userInterface = new ChatClientGUI(this, true);
 		}
 
 		// _userInterface.setVisible(true);
@@ -62,18 +74,20 @@ public class ClientController implements IfcSocketClientConsumer {
 		return startCLI;
 	}
 
+	
+	
 	public void onDisconnected(Exception inEx) {
 		// TODO Auto-generated method stub
 
 	}
 
 	public void onReceivedMsg(String inMessage) {
-	
 		_userInterface.onReceivedMsg(inMessage);
 
 	}
 
-	public void connect(InetAddress serverAddress, int serverPort, String username) {
+	public void connect(InetAddress serverAddress, int serverPort,
+			String username) {
 
 		try {
 			_chatClient.connect(serverAddress, serverPort, username);
@@ -89,7 +103,8 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	public void send(String message) {
 		try {
-			if(_logisOn) logger.writeLog(message);
+			if (_logisOn)
+				logger.writeLog(message);
 			_chatClient.sendMsg(message);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -98,28 +113,29 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	}
 
-public LogFactory getLogger(){
-	return logger;
-}
+	public LogFactory getLogger() {
+		return logger;
+	}
 
-public void setLogger(File file) throws IOException{
-	logger = new LogFactory(file);
-}
+	public void setLogger(File file) throws IOException {
+		logger = new LogFactory(file);
+	}
 
-public void turnLogOff(){
-	if(_logisOn) logger.writeLogBeforeTurnOff();
-	_logisOn = false;
-	
-}
+	public void turnLogOff() {
+		if (_logisOn)
+			logger.writeLogBeforeTurnOff();
+		_logisOn = false;
 
-public void turnLogOn(){
-	_logisOn = true;
-	
-}
+	}
 
-public boolean isLogOn(){
-	return _logisOn;
-	
-}
-	
+	public void turnLogOn() {
+		_logisOn = true;
+
+	}
+
+	public boolean isLogOn() {
+		return _logisOn;
+
+	}
+
 }

@@ -19,6 +19,11 @@ public class ChatClientCLI implements IfcUserInterface {
 		_controller = inClientController;
 		runSubshell();
 	}
+	
+	public ChatClientCLI(ClientController inClientController, boolean testing) {
+		_controller = inClientController;
+		
+	}
 
 	private void runSubshell() {
 		String inText = "";

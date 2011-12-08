@@ -1,19 +1,45 @@
 package ch.hszt.groupf.fallstudie.client.controller;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+
+import java.io.StringWriter;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ch.hszt.groupf.fallstudie.client.log.LogFactory;
+import ch.hszt.groupf.fallstudie.client.socket.IfcClientSocket;
+
 public class ClientControllerTest {
+
+	private IfcClientSocket _chatClient;
+	private IfcUserInterface _userInterface;
+	private ClientController clientControllerCLI = null;
+	private ClientController clientControllerGUI = null;
+	private LogFactory logger = null;
+	private boolean _logisOn = false;
+	StringWriter stringWriter = null;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+
 	}
 
 	@Before
 	public void setUp() throws Exception {
+//		stringWriter = new StringWriter();
+		logger = new LogFactory(stringWriter);
+		clientControllerGUI = new ClientController(true, true);
+		
+		
+		
+		
+		
+		
+		
+
 	}
 
 	@Test
@@ -63,7 +89,11 @@ public class ClientControllerTest {
 
 	@Test
 	public void testTurnLogOn() {
-		fail("Not yet implemented");
+	clientControllerCLI.turnLogOn();
+	
+		
+	assertTrue(clientControllerCLI.isLogOn());
+	
 	}
 
 	@Test
