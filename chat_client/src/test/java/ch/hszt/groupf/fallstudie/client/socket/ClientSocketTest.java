@@ -31,7 +31,8 @@ public class ClientSocketTest {
 	private ClientSocket _clientSocket;
 	private final Socket _socket = mock(Socket.class);
 	private final DataOutputStream _dos = mock(DataOutputStream.class);
-	private final DataInputStream _dis = spy(new DataInputStream(mock(InputStream.class)));
+	private final DataInputStream _dis = spy(new DataInputStream(
+			mock(InputStream.class)));
 	private static InetAddress _localhost;
 	private final int _serverPort = 10000;
 	private final String _userName = "TestUser";
@@ -46,20 +47,23 @@ public class ClientSocketTest {
 
 		_clientSocket = new ClientSocket(clientConsumer) {
 			@Override
-			Socket getNewSocket(InetAddress inServerAddress, int inServerPort) throws IOException,
-					IllegalArgumentException {
+			Socket getNewSocket(InetAddress inServerAddress, int inServerPort)
+					throws IOException, IllegalArgumentException {
 				if (inServerPort < 0)
-					throw new IllegalArgumentException("inServerPort must be greater or equals 0");
+					throw new IllegalArgumentException(
+							"inServerPort must be greater or equals 0");
 				return _socket;
 			}
 
 			@Override
-			DataOutputStream getNewDataOutputStream(Socket inSocket) throws IOException {
+			DataOutputStream getNewDataOutputStream(Socket inSocket)
+					throws IOException {
 				return _dos;
 			}
 
 			@Override
-			DataInputStream getNewDataInputStream(Socket inSocket) throws IOException {
+			DataInputStream getNewDataInputStream(Socket inSocket)
+					throws IOException {
 				return _dis;
 			}
 		};
@@ -135,6 +139,7 @@ public class ClientSocketTest {
 		// anyObject())).thenReturn(_dos);
 
 		_clientSocket.connect(_localhost, _serverPort, _userName);
+
 		// when(_clientSocket.getNewSocket(Inet4Address.getLocalHost(),
 		// 10000)).thenReturn(_socket);
 		// when(_clientSocket.getNewDataInputStream(_socket)).thenReturn(_dis);
@@ -144,6 +149,7 @@ public class ClientSocketTest {
 		// when(_socket.getOutputStream()).thenReturn(os);
 		_clientSocket.sendMsg("Test");
 		// assertTrue(os.);
+
 		verify(_dos).writeUTF("Test");
 	}
 }

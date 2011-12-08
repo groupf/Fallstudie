@@ -1,0 +1,5 @@
+#surefire
+#Thu Dec 08 17:56:51 CET 2011
+user.dir=/Volumes/linux/Fallstudie/chat_server
+localRepository=/Users/micha/.m2/repository
+basedir=/Volumes/linux/Fallstudie/chat_server

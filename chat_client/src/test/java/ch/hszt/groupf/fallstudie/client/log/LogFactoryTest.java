@@ -63,13 +63,16 @@ public class LogFactoryTest {
 	public void testWriteLog() {
 		String excpected = "Test my class";
 		String excpected2 = "This is a second test";
+		String excpected3 = "This is a second test";
 
 		myLog.writeLog("Test my class");
 		myLog.writeLog("This is a second test");
 		myLog.writeLog("Test with special signs @!$/?");
+		myLog.writeLog("Test with special signs @!$/?");
 
 		assertTrue(logOutput.toString().contains(excpected));
 		assertTrue(logOutput.toString().contains(excpected2));
+		assertTrue(logOutput.toString().contains(excpected3));
 		assertFalse(logOutput.toString().contentEquals("$"));
 	}
 
