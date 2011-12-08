@@ -11,7 +11,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ch.hszt.groupf.fallstudie.client.cli.ChatClientCLI;
+import ch.hszt.groupf.fallstudie.client.gui.ChatClientGUI;
 import ch.hszt.groupf.fallstudie.client.log.LogFactory;
+import ch.hszt.groupf.fallstudie.client.socket.ClientSocket;
 import ch.hszt.groupf.fallstudie.client.socket.IfcClientSocket;
 
 public class ClientControllerTest {
@@ -33,14 +36,29 @@ public class ClientControllerTest {
 	public void setUp() throws Exception {
 		// stringWriter = new StringWriter();
 		logger = new LogFactory(stringWriter);
-		clientControllerGUI = new ClientController(true, true);
+		clientControllerGUI = new ClientController(false, true);
 		clientControllerCLI = new ClientController(true, true);
 
 	}
 
 	@Test
 	public void testClientController() {
-		fail("Not yet implemented");
+		clientControllerGUI = new ClientController(false, true);
+		clientControllerCLI = new ClientController(true, true);
+
+		if (clientControllerCLI.getUserInterface().getChatClientString()
+				.contentEquals("CLI"))
+			assertTrue(true);
+		else
+			assertTrue(false);
+		
+		if (clientControllerGUI.getUserInterface().getChatClientString()
+				.contentEquals("GUI"))
+			assertTrue(true);
+		else
+			assertTrue(false);
+		
+
 	}
 
 	@Test

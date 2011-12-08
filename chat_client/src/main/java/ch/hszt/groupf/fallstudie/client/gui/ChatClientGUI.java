@@ -491,8 +491,12 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 	@Override
 	public LogFactory getLoggeronController() {
-		// TODO Auto-generated method stub
-		return null;
+		return _controller.getLogger();
+	}
+
+	@Override
+	public String getChatClientString() {
+		return "GUI";
 	}
 	
 	

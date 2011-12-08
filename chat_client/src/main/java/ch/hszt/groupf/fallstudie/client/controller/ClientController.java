@@ -33,8 +33,7 @@ public class ClientController implements IfcSocketClientConsumer {
 		// _userInterface.setVisible(true);
 
 	}
-	
-	
+
 	public ClientController(boolean startCLI, boolean testing) {
 		_chatClient = new ClientSocket(this);
 
@@ -62,6 +61,14 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	}
 
+	public IfcUserInterface getUserInterface(){
+		
+		return _userInterface;
+		
+	}
+	
+	
+	
 	private static boolean isCLIinStartParam(String[] args) {
 		boolean startCLI = false;
 
@@ -74,8 +81,6 @@ public class ClientController implements IfcSocketClientConsumer {
 		return startCLI;
 	}
 
-	
-	
 	public void onDisconnected(Exception inEx) {
 		// TODO Auto-generated method stub
 
@@ -121,10 +126,6 @@ public class ClientController implements IfcSocketClientConsumer {
 		logger = new LogFactory(file);
 	}
 
-	
-	
-	
-	
 	public void turnLogOff() {
 		if (_logisOn)
 			logger.writeLogBeforeTurnOff();

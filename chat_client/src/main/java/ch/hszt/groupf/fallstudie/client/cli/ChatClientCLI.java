@@ -133,4 +133,9 @@ public class ChatClientCLI implements IfcUserInterface {
 		return _controller.getLogger();
 	}
 
+	@Override
+	public String getChatClientString() {
+		return "CLI";
+	}
+
 }

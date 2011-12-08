@@ -21,5 +21,8 @@ public interface IfcUserInterface extends IfcSocketClientConsumer {
 	 */
 	public LogFactory getLoggeronController();
 	
+	public String getChatClientString();
+	
+	
 	
 }
