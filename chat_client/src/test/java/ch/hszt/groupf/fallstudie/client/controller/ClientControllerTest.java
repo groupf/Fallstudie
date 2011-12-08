@@ -10,7 +10,6 @@ import java.io.StringWriter;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import ch.hszt.groupf.fallstudie.client.cli.ChatClientCLI;
 import ch.hszt.groupf.fallstudie.client.gui.ChatClientGUI;
 import ch.hszt.groupf.fallstudie.client.log.LogFactory;
