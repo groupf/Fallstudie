@@ -479,4 +479,21 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * This method is just used for JUnit Tests
+	 */
+	public void setLoggeronController(File file) throws IOException, NullPointerException{
+		_controller.setLogger(file);
+		
+		
+	}
+
+	@Override
+	public LogFactory getLoggeronController() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

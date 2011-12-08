@@ -117,10 +117,14 @@ public class ClientController implements IfcSocketClientConsumer {
 		return logger;
 	}
 
-	public void setLogger(File file) throws IOException {
+	public void setLogger(File file) throws IOException, NullPointerException {
 		logger = new LogFactory(file);
 	}
 
+	
+	
+	
+	
 	public void turnLogOff() {
 		if (_logisOn)
 			logger.writeLogBeforeTurnOff();

@@ -2,6 +2,7 @@ package ch.hszt.groupf.fallstudie.client.cli;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -9,6 +10,7 @@ import java.util.Currency;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
 import ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface;
+import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 
 
 public class ChatClientCLI implements IfcUserInterface {
@@ -115,6 +117,20 @@ public class ChatClientCLI implements IfcUserInterface {
 	public void displayConnStatus(String connectionStatus) {
 		// TODO evtl. use a write-buffer
 		// System.out.println(connectionStatus);
+	}
+
+	/**
+	 * This method is just used for JUnit Tests
+	 */
+	@Override
+	public void setLoggeronController(File file) throws IOException, NullPointerException{
+		_controller.setLogger(file);
+		
+	}
+
+	@Override
+	public LogFactory getLoggeronController() {
+		return _controller.getLogger();
 	}
 
 }
