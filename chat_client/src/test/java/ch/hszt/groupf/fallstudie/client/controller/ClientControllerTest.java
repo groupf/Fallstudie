@@ -1,6 +1,7 @@
 package ch.hszt.groupf.fallstudie.client.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -10,10 +11,8 @@ import java.io.StringWriter;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import ch.hszt.groupf.fallstudie.client.cli.ChatClientCLI;
-import ch.hszt.groupf.fallstudie.client.gui.ChatClientGUI;
+
 import ch.hszt.groupf.fallstudie.client.log.LogFactory;
-import ch.hszt.groupf.fallstudie.client.socket.ClientSocket;
 import ch.hszt.groupf.fallstudie.client.socket.IfcClientSocket;
 
 public class ClientControllerTest {
@@ -35,11 +34,7 @@ public class ClientControllerTest {
 	public void setUp() throws Exception {
 		// stringWriter = new StringWriter();
 		logger = new LogFactory(stringWriter);
-		
-		/**
-		 * Dies wäre das richtige
-		 */clientControllerGUI = new ClientController(false, true);
-		clientControllerGUI = new ClientController(true, true);
+		clientControllerGUI = new ClientController(false, true);
 		clientControllerCLI = new ClientController(true, true);
 
 	}
@@ -54,13 +49,12 @@ public class ClientControllerTest {
 			assertTrue(true);
 		else
 			assertTrue(false);
-		
+
 		if (clientControllerGUI.getUserInterface().getChatClientString()
 				.contentEquals("GUI"))
 			assertTrue(true);
 		else
 			assertTrue(false);
-		
 
 	}
 
@@ -173,7 +167,7 @@ public class ClientControllerTest {
 
 	@Test
 	public void testSetLogger() {
-		
+
 		File myFile = new File("C:\test");
 
 		/**
