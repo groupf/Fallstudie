@@ -35,7 +35,11 @@ public class ClientControllerTest {
 	public void setUp() throws Exception {
 		// stringWriter = new StringWriter();
 		logger = new LogFactory(stringWriter);
-		clientControllerGUI = new ClientController(false, true);
+		
+		/**
+		 * Dies wäre das richtige
+		 */clientControllerGUI = new ClientController(false, true);
+		clientControllerGUI = new ClientController(true, true);
 		clientControllerCLI = new ClientController(true, true);
 
 	}
@@ -169,6 +173,7 @@ public class ClientControllerTest {
 
 	@Test
 	public void testSetLogger() {
+		
 		File myFile = new File("C:\test");
 
 		/**
