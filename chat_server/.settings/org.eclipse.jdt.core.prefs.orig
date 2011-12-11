@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+#Sat Dec 10 08:38:49 CET 2011
+=======
+#Fri Dec 02 16:10:41 CET 2011
+>>>>>>> 7bdc85c65f812448116acd9d93261b0cbef03759
+eclipse.preferences.version=1
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.6
+org.eclipse.jdt.core.compiler.compliance=1.6
+org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+org.eclipse.jdt.core.compiler.source=1.6
