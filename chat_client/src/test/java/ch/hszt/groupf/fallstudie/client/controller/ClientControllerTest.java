@@ -3,10 +3,15 @@ package ch.hszt.groupf.fallstudie.client.controller;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -14,16 +19,21 @@ import org.junit.Test;
 
 import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 import ch.hszt.groupf.fallstudie.client.socket.IfcClientSocket;
+import ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer;
 
 public class ClientControllerTest {
 
-	private IfcClientSocket _chatClient;
-	private IfcUserInterface _userInterface;
+	private IfcClientSocket _chatClient = mock(IfcClientSocket.class);
+	private IfcUserInterface _userInterface = mock(IfcUserInterface.class);
 	private ClientController clientControllerCLI = null;
 	private ClientController clientControllerGUI = null;
 	private LogFactory logger = null;
 	private boolean _logisOn = false;
 	StringWriter stringWriter = null;
+
+	private static InetAddress _localhost;
+	private final int _serverPort = 10000;
+	private final String _userName = "TestUser";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -32,31 +42,60 @@ public class ClientControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		_localhost = Inet4Address.getLocalHost();
+
 		// stringWriter = new StringWriter();
 		logger = new LogFactory(stringWriter);
-		clientControllerGUI = new ClientController(false, true);
-		clientControllerCLI = new ClientController(true, true);
+		clientControllerGUI = new ClientController(false) {
+			@Override
+			protected IfcClientSocket getNewClientSocket(IfcSocketClientConsumer inSktClientConsumer) {
+				return _chatClient;
+			}
+
+			protected IfcUserInterface getNewChatClientCLI(ClientController inCltController) {
+				return _userInterface;
+			}
+
+			protected IfcUserInterface getNewChatClientGUI(ClientController inCltController) {
+				return _userInterface;
+			}
+		};
+		clientControllerCLI = new ClientController(true) {
+			@Override
+			protected IfcClientSocket getNewClientSocket(IfcSocketClientConsumer inSktClientConsumer) {
+				return _chatClient;
+			}
+
+			protected IfcUserInterface getNewChatClientCLI(ClientController inCltController) {
+				return _userInterface;
+			}
+
+			protected IfcUserInterface getNewChatClientGUI(ClientController inCltController) {
+				return _userInterface;
+			}
+		};
 
 	}
 
-	@Test
-	public void testClientController() {
-		clientControllerGUI = new ClientController(false, true);
-		clientControllerCLI = new ClientController(true, true);
-
-		if (clientControllerCLI.getUserInterface().getChatClientString()
-				.contentEquals("CLI"))
-			assertTrue(true);
-		else
-			assertTrue(false);
-
-		if (clientControllerGUI.getUserInterface().getChatClientString()
-				.contentEquals("GUI"))
-			assertTrue(true);
-		else
-			assertTrue(false);
-
-	}
+	// Was willst du hier genau testen?
+	// @Test
+	// public void testClientController() {
+	// clientControllerGUI = new ClientController(false, true);
+	// clientControllerCLI = new ClientController(true, true);
+	//
+	// if
+	// (clientControllerCLI.getUserInterface().getChatClientString().contentEquals("CLI"))
+	// assertTrue(true);
+	// else
+	// assertTrue(false);
+	//
+	// if
+	// (clientControllerGUI.getUserInterface().getChatClientString().contentEquals("GUI"))
+	// assertTrue(true);
+	// else
+	// assertTrue(false);
+	//
+	// }
 
 	@Test
 	public void testMain() {
@@ -76,8 +115,33 @@ public class ClientControllerTest {
 	}
 
 	@Test
-	public void testConnect() {
-		fail("Not yet implemented");
+	public void testConnectCLI() {
+		clientControllerCLI.connect(_localhost, _serverPort, _userName);
+		try {
+			verify(_chatClient).connect(_localhost, _serverPort, _userName);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	public void testConnectGUI() {
+		clientControllerGUI.connect(_localhost, _serverPort, _userName);
+		try {
+			verify(_chatClient).connect(_localhost, _serverPort, _userName);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Test
@@ -86,11 +150,13 @@ public class ClientControllerTest {
 	}
 
 	@Test
-	public void testGetLogger() {
-		ClientController clientControllerGUI2 = new ClientController(true, true);
-		ClientController clientControllerCLI2 = new ClientController(true, true);
-		/* as we are currently developing on different operating systems java.io.tmpdir should be used as temporary directory instead of 'c:\' */
-		//File myFile = new File("C:\test");
+	public void testGetLoggerNotNull() {
+
+		/*
+		 * as we are currently developing on different operating systems
+		 * java.io.tmpdir should be used as temporary directory instead of 'c:\'
+		 */
+		// File myFile = new File("C:\test");
 		File myFile = new File(System.getProperty("java.io.tmpdir") + File.separatorChar + "test");
 
 		/**
@@ -133,18 +199,26 @@ public class ClientControllerTest {
 			assertTrue(true);
 		}
 
+	}
+
+	@Test
+	public void testGetLoggerWithNull() {
+		// ClientController clientControllerGUI2 = new ClientController(true,
+		// true);
+		// ClientController clientControllerCLI2 = new ClientController(true,
+		// true);
 		/**
 		 * Test GUI Controller with Logger == null;
 		 */
 		try {
 			try {
-				clientControllerGUI2.setLogger(null);
+				clientControllerGUI.setLogger(null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} catch (NullPointerException e1) {
 		}
-		if (clientControllerGUI2.getLogger() == null)
+		if (clientControllerGUI.getLogger() == null)
 			assertTrue(true);
 		else
 			assertTrue(false);
@@ -154,25 +228,20 @@ public class ClientControllerTest {
 		 */
 		try {
 			try {
-				clientControllerCLI2.setLogger(null);
+				clientControllerCLI.setLogger(null);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} catch (NullPointerException e1) {
 		}
-		if (clientControllerCLI2.getLogger() == null)
+		if (clientControllerCLI.getLogger() == null)
 			assertTrue(true);
 		else
 			assertTrue(false);
-
 	}
 
 	@Test
-	public void testSetLogger() {
-
-		/* as we are currently developing on different operating systems java.io.tmpdir should be used as temporary directory instead of 'c:\' */
-		//File myFile = new File("C:\test");
-		File myFile = new File(System.getProperty("java.io.tmpdir") + File.separatorChar + "test");
+	public void testSetLoggerWithNull() {
 
 		/**
 		 * Test GUI Controller with Logger == null;
@@ -201,6 +270,17 @@ public class ClientControllerTest {
 		} catch (NullPointerException e1) {
 			assertFalse(false);
 		}
+
+	}
+
+	@Test
+	public void testSetLoggerNotNull() {
+		/*
+		 * as we are currently developing on different operating systems
+		 * java.io.tmpdir should be used as temporary directory instead of 'c:\'
+		 */
+		// File myFile = new File("C:\test");
+		File myFile = new File(System.getProperty("java.io.tmpdir") + File.separatorChar + "test");
 
 		/**
 		 * Test GUI Controller with Logger != null;

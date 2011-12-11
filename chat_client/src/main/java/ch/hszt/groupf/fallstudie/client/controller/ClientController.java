@@ -21,13 +21,13 @@ public class ClientController implements IfcSocketClientConsumer {
 	private boolean _logisOn = false;
 
 	public ClientController(boolean startCLI) {
-		_chatClient = new ClientSocket(this);
+		_chatClient = getNewClientSocket(this);
 
 		if (startCLI) {
-			_userInterface = new ChatClientCLI(this);
+			_userInterface = getNewChatClientCLI(this);
 
 		} else {
-			_userInterface = new ChatClientGUI(this);
+			_userInterface = getNewChatClientGUI(this);
 		}
 
 		// _userInterface.setVisible(true);
@@ -48,6 +48,18 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	}
 
+	protected IfcClientSocket getNewClientSocket(IfcSocketClientConsumer inSktClientConsumer) {
+		return new ClientSocket(inSktClientConsumer);
+	}
+
+	protected IfcUserInterface getNewChatClientCLI(ClientController inCltController) {
+		return new ChatClientCLI(inCltController);
+	}
+
+	protected IfcUserInterface getNewChatClientGUI(ClientController inCltController) {
+		return new ChatClientGUI(inCltController);
+	}
+
 	/**
 	 * @param args
 	 */
@@ -61,14 +73,12 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	}
 
-	public IfcUserInterface getUserInterface(){
-		
+	public IfcUserInterface getUserInterface() {
+
 		return _userInterface;
-		
+
 	}
-	
-	
-	
+
 	private static boolean isCLIinStartParam(String[] args) {
 		boolean startCLI = false;
 
@@ -91,8 +101,7 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	}
 
-	public void connect(InetAddress serverAddress, int serverPort,
-			String username) {
+	public void connect(InetAddress serverAddress, int serverPort, String username) {
 
 		try {
 			_chatClient.connect(serverAddress, serverPort, username);
