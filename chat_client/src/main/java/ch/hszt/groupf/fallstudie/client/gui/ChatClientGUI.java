@@ -10,11 +10,14 @@
  */
 package ch.hszt.groupf.fallstudie.client.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -26,7 +29,6 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 
 /**
  * 
- * @author
  */
 public class ChatClientGUI extends javax.swing.JFrame implements
 		IfcUserInterface {
@@ -39,6 +41,14 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		init();
 		initComponents();
 		setVisible(true);
+
+	}
+	
+	public ChatClientGUI(ClientController inClientController, boolean test) {
+		_controller = inClientController;
+//		init();
+//		initComponents();
+//		setVisible(true);
 
 	}
 
@@ -143,9 +153,27 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 		_jMenuItemHlpCmd.setText("Commands");
 		_jMenuHelp.add(_jMenuItemHlpCmd);
+		_jMenuItemHlpCmd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(new JFrame(),
+						"At the moment not implemented.");
+
+			}
+		});
 
 		_jMenuItemHlpAbout.setText("About");
 		_jMenuHelp.add(_jMenuItemHlpAbout);
+		_jMenuItemHlpAbout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(new JFrame(),
+						"At the moment not implemented.");
+
+			}
+		});
 
 		_jMenuBar.add(_jMenuHelp);
 
@@ -257,11 +285,23 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 	}
 
 	private void onOpenConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onOpenConnection
-
-	}
+		ChatClientConnGUI clientConnGUI = new ChatClientConnGUI(this, true);
+		clientConnGUI.setVisible(true);
+		String username = clientConnGUI.getUserName();
+		InetAddress serverAddress = clientConnGUI.getServerAddress();
+		int serverPort = clientConnGUI.getServerPort();
+		if (serverAddress != null) {
+			_controller.connect(serverAddress, serverPort, username);
+		}
+	}// GEN-LAST:event_onOpenConnection
 
 	private void onCloseConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onCloseConnection
-		// TODO add your handling code here:
+
+		/**
+		 * Here is missing the code for closing a chat-connection from the
+		 * server to the client
+		 */
+
 	}// GEN-LAST:event_onCloseConnection
 
 	/**
@@ -367,6 +407,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 							}
 
 							_controller.turnLogOn();
+							_controller.getLogger().writeFirstLogAfterTurnedOn();
 						} else
 							_controller.turnLogOn();
 						System.out
@@ -438,4 +479,25 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * This method is just used for JUnit Tests
+	 */
+	public void setLoggeronController(File file) throws IOException, NullPointerException{
+		_controller.setLogger(file);
+		
+		
+	}
+
+	@Override
+	public LogFactory getLoggeronController() {
+		return _controller.getLogger();
+	}
+
+	@Override
+	public String getChatClientString() {
+		return "GUI";
+	}
+	
+	
 }
