@@ -89,7 +89,9 @@ public class ClientControllerTest {
 	public void testGetLogger() {
 		ClientController clientControllerGUI2 = new ClientController(true, true);
 		ClientController clientControllerCLI2 = new ClientController(true, true);
-		File myFile = new File("C:\test");
+		/* as we are currently developing on different operating systems java.io.tmpdir should be used as temporary directory instead of 'c:\' */
+		//File myFile = new File("C:\test");
+		File myFile = new File(System.getProperty("java.io.tmpdir") + File.separatorChar + "test");
 
 		/**
 		 * Test GUI Controller with Logger != null;
@@ -168,7 +170,9 @@ public class ClientControllerTest {
 	@Test
 	public void testSetLogger() {
 
-		File myFile = new File("C:\test");
+		/* as we are currently developing on different operating systems java.io.tmpdir should be used as temporary directory instead of 'c:\' */
+		//File myFile = new File("C:\test");
+		File myFile = new File(System.getProperty("java.io.tmpdir") + File.separatorChar + "test");
 
 		/**
 		 * Test GUI Controller with Logger == null;
