@@ -70,12 +70,24 @@ public class ChatClientCLI implements IfcUserInterface {
 			
 			if (command.equals("quit")) {
 				System.out.println("quit");
-				//_controller.disconnect();
+				_exitCLI = true;
 			} else if (command.equals("connect")){
 				System.out.println("connect");
 				//_controller.connect(currentLine[1], currentLine[2], username)
 			} else if (command.equals("username")) {
 				System.out.println("Set Username");
+			} else if (command.equals("logfile")) {
+				try {
+					_controller.setLogger(new File(currentLine[1]));
+					_controller.turnLogOn();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else if (command.equals("log:on")) {
+				_controller.turnLogOn();
+			} else if (command.equals("log:off" )) {
+				_controller.turnLogOff();
 			} else {
 				System.out.println("command not found");
 			}
