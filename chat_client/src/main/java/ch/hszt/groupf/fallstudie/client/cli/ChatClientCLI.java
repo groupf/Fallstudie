@@ -24,7 +24,6 @@ public class ChatClientCLI implements IfcUserInterface {
 	
 	public ChatClientCLI(ClientController inClientController, boolean testing) {
 		_controller = inClientController;
-		
 	}
 
 	private void runSubshell() {
@@ -65,7 +64,7 @@ public class ChatClientCLI implements IfcUserInterface {
 		String[] currentLine = inText.split(" ");
 
 		if (currentLine[0].startsWith("\\")) {
-			currentLine[0] = currentLine[0].replaceFirst("\\", "");
+			currentLine[0] = currentLine[0].replaceFirst("\\\\", "");
 			String command = currentLine[0];
 			
 			if (command.equals("quit")) {
@@ -108,6 +107,10 @@ public class ChatClientCLI implements IfcUserInterface {
 //		} else {
 //			return "Command not found";
 //		}
+	}
+	
+	public void postMsg(String line) {
+		msgParser(line);
 	}
 	private void welcomeMsg() {
 
