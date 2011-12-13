@@ -44,13 +44,13 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 	}
 	
-	public ChatClientGUI(ClientController inClientController, boolean test) {
-		_controller = inClientController;
+//	public ChatClientGUI(ClientController inClientController, boolean test) {
+//		_controller = inClientController;
 //		init();
 //		initComponents();
 //		setVisible(true);
 
-	}
+//	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.

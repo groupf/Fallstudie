@@ -34,19 +34,17 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	}
 
-	public ClientController(boolean startCLI, boolean testing) {
-		_chatClient = new ClientSocket(this);
-
-		if (startCLI) {
-			_userInterface = new ChatClientCLI(this, true);
-
-		} else {
-			_userInterface = new ChatClientGUI(this, true);
-		}
-
+//	public ClientController(boolean startCLI, boolean testing) {
+//		_chatClient = new ClientSocket(this);
+//
+//		if (startCLI) {
+//			_userInterface = new ChatClientCLI(this, true);
+//
+//		} else {
+//			_userInterface = new ChatClientGUI(this, true);
+//		}
 		// _userInterface.setVisible(true);
-
-	}
+//	}
 
 	protected IfcClientSocket getNewClientSocket(IfcSocketClientConsumer inSktClientConsumer) {
 		return new ClientSocket(inSktClientConsumer);

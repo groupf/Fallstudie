@@ -22,9 +22,9 @@ public class ChatClientCLI implements IfcUserInterface {
 		runSubshell();
 	}
 	
-	public ChatClientCLI(ClientController inClientController, boolean testing) {
-		_controller = inClientController;
-	}
+//	public ChatClientCLI(ClientController inClientController, boolean testing) {
+//		_controller = inClientController;
+//	}
 
 	private void runSubshell() {
 		String inText = "";
