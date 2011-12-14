@@ -11,6 +11,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.hszt.groupf.fallstudie.server.msgparser.MsgParser;
 import ch.hszt.groupf.fallstudie.server.srvconfig.ServerDefaultConfig;
 
 /**
@@ -42,12 +43,18 @@ public class ChatServer {
 	}
 
 	/**
+	 * The listen method starts the ServerSocket on the given Port an loops in a
+	 * while until the ServerSocket is closed due to an Exception.
 	 * 
 	 * @param inServerPort
+	 *            Port on which the Server listens.
 	 */
 	private void listen(int inServerPort) {
 
 		try {
+			/*
+			 * Opens a new ServerSocket
+			 */
 			_serverSocket = newServerSocket(inServerPort);
 
 		} catch (IllegalArgumentException e) {
@@ -63,10 +70,12 @@ public class ChatServer {
 		} catch (IOException e2) {
 
 			logger.error("Unable to start the Server on Port " + inServerPort + ". Server will be stopped!");
-			// e.printStackTrace();
 			System.exit(0);
 		}
 
+		/*
+		 * Loop until the ServerSocket is closed due to an Exception.
+		 */
 		while (!(_serverSocket.isClosed())) {
 			// BufferedReader reader = null;
 			// PrintWriter writer = null;
@@ -94,7 +103,7 @@ public class ChatServer {
 				logger.warn("IO Exception occured during the opening of an incoming Connection.");
 
 			} catch (IllegalArgumentException e) {
-
+				// TODO Send Error Message to User (doutStream)
 				logger.info("IllegalArgumentException: " + e.getMessage());
 			}
 
@@ -102,8 +111,6 @@ public class ChatServer {
 	}
 
 	protected String getIncomingSocketUserName(Socket inSocket) throws IOException, IllegalArgumentException {
-		// TODO check the received username if it is in a legal pattern.
-		// otherwise throw IllegalArgumentException
 		return (new DataInputStream(inSocket.getInputStream())).readUTF();
 	}
 
@@ -111,23 +118,25 @@ public class ChatServer {
 		return new DataOutputStream(inSocket.getOutputStream());
 	}
 
+	protected ServerSocket newServerSocket(int inServerPort) throws IOException {
+		return new ServerSocket(inServerPort);
+	}
+
 	private void addUserToMap(String inUserName, DataOutputStream dos) throws IllegalArgumentException {
 		synchronized (_openOutputStreams) {
 			if (_openOutputStreams.containsKey(inUserName)) {
-				throw new IllegalArgumentException("Username allready exists in the Map.");
+				throw new IllegalArgumentException("Username allready exists!");
 			}
-			// TODO Parse Usernames, if they ar allowed -> needs a
-			// UserNameParser
+
+			if (!MsgParser.isValidUserName(inUserName)) {
+				throw new IllegalArgumentException("Username doesn't matches the pattern '[a-zA-Z0-9_-].*' !");
+			}
 
 			_openOutputStreams.put(inUserName, dos);
 			if (logger.isDebugEnabled()) {
 				logger.debug("User added to Map: " + inUserName);
 			}
 		}
-	}
-
-	protected ServerSocket newServerSocket(int inServerPort) throws IOException {
-		return new ServerSocket(inServerPort);
 	}
 
 	protected void sendJoinedMsg(String inUserName) {

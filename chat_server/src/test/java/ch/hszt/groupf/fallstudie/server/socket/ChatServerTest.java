@@ -36,7 +36,7 @@ public class ChatServerTest {
 		System.setSecurityManager(new NoExitSecurityManager());
 		// when(_serverSocket.accept()).thenReturn(_socket);
 
-		// _socketServer = new SocketServer(ServerDefaultConfig.SERVERPORT) {
+		// _socketServer = new ChatServer(ServerDefaultConfig.SERVERPORT) {
 		// @Override
 		// protected ServerSocket newServerSocket(int inServerPort) throws
 		// IOException {
@@ -49,7 +49,8 @@ public class ChatServerTest {
 		// // TODO check the received username if it is in a legal
 		// // pattern.
 		// // otherwise throw IllegalArgumentException
-		// return "testuser";
+		// // throw new IOException();
+		// // return "testuser";
 		// }
 		//
 		// @Override
@@ -69,22 +70,23 @@ public class ChatServerTest {
 	 * Tests if the SocketServer calls system.exit(0), when the newServerSockets
 	 * throws an IOException
 	 */
-	// @Test
-	// public void testSocketServerStopsOnIOEx() {
-	// try {
-	// new SocketServer(ServerDefaultConfig.SERVERPORT) {
-	// @Override
-	// protected ServerSocket newServerSocket(int inServerPort) throws
-	// IOException {
-	// throw new IOException();
-	// }
-	//
-	// };
-	// } catch (ExitException e) {
-	// assertEquals("Exit status", 0, e.status);
-	// }
-	//
-	// }
+	@Test
+	public void testSocketServerStopsOnIOEx() {
+		// try {
+		// new ChatServer(ServerDefaultConfig.SERVERPORT) {
+		// @Override
+		// protected ServerSocket newServerSocket(int inServerPort) throws
+		// IOException {
+		// throw new IOException();
+		// }
+		//
+		// };
+		// } catch (ExitException e) {
+		// assertEquals("Exit status", 0, e.status);
+		// }
+
+		fail("Not yet implemented");
+	}
 
 	@Test
 	public void testSendJoinedMsg() {

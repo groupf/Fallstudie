@@ -110,4 +110,20 @@ public class MsgParserTest {
 		String test = MsgParser.getMsgPartFromMsg(null);
 	}
 
+	/**
+	 * 
+	 */
+	@Test
+	public void testIsValidUsername() {
+		assertTrue(MsgParser.isValidUserName("TestUser"));
+		assertTrue(MsgParser.isValidUserName("test-user"));
+		assertTrue(MsgParser.isValidUserName("test123"));
+		assertTrue(MsgParser.isValidUserName("9102_23"));
+		assertTrue(MsgParser.isValidUserName("_"));
+		assertFalse(MsgParser.isValidUserName("@#1223"));
+		assertFalse(MsgParser.isValidUserName(""));
+		assertFalse(MsgParser.isValidUserName(null));
+
+	}
+
 }

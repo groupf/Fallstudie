@@ -75,4 +75,11 @@ public class MsgParser {
 
 		return msgPart;
 	}
+
+	public static boolean isValidUserName(String inUsername) {
+		if (inUsername == null) {
+			return false;
+		}
+		return inUsername.matches("[a-zA-Z0-9_-].*");
+	}
 }
