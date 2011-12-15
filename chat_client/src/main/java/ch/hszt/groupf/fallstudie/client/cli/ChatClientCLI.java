@@ -25,9 +25,6 @@ public class ChatClientCLI implements IfcUserInterface {
 		runSubshell();
 	}
 	
-	private void blah() {
-		System.out.println("blah");
-	}
 	
 	private void runSubshell() {
 		String inText = "";
