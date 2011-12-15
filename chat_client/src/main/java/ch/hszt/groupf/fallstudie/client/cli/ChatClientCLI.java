@@ -87,7 +87,7 @@ public class ChatClientCLI implements IfcUserInterface {
 			} else if (command.equals("help")) {
 				printHelpMsg();
 			} else if (command.equals("status")) {
-				System.out.println("currently under development");
+				displayConnStatus();
 			} else {
 				System.out.println("command not found. See \\help for further information");
 			}
@@ -134,7 +134,7 @@ public class ChatClientCLI implements IfcUserInterface {
 		System.out.println(inMessage);
 	}
 
-	public void displayConnStatus(String connectionStatus) {
+	public void displayConnStatus() {
 		System.out.println("You are " + _controller.isConnected());
 	}
 

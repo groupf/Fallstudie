@@ -8,8 +8,7 @@ import ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer;
 
 
 public interface IfcUserInterface extends IfcSocketClientConsumer {
-	public void displayConnStatus(String connectionStatus);
-	
+	public void displayConnStatus();
 	
 	/**
 	 * This method is just used for JUnit Tests
