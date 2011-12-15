@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Currency;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Random;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
 import ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface;
@@ -16,15 +18,12 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 public class ChatClientCLI implements IfcUserInterface {
 	private boolean _exitCLI = false;
 	private final ClientController _controller;
+	private String[] goodByeMessages = {"Good bye","See you soon","CYA", "Bye", "Peace"};
 
 	public ChatClientCLI(ClientController inClientController) {
 		_controller = inClientController;
 		runSubshell();
 	}
-	
-//	public ChatClientCLI(ClientController inClientController, boolean testing) {
-//		_controller = inClientController;
-//	}
 
 	private void runSubshell() {
 		String inText = "";
@@ -36,13 +35,7 @@ public class ChatClientCLI implements IfcUserInterface {
 
 			try {
 				msgParser(in.readLine());
-//				inText = in.readLine();
-//				if (inText.contains("\\q")) {
-//					_exitCLI = true;
-//				}
-				// out.write(strLine, 0, strLine.length());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 //			} finally {
 //
@@ -68,27 +61,36 @@ public class ChatClientCLI implements IfcUserInterface {
 			String command = currentLine[0];
 			
 			if (command.equals("quit")) {
-				System.out.println("quit");
+				System.out.println(goodByeMessages[new Random().nextInt(goodByeMessages.length)]);
 				_exitCLI = true;
 			} else if (command.equals("connect")){
-				System.out.println("connect");
-				//_controller.connect(currentLine[1], currentLine[2], username)
-			} else if (command.equals("username")) {
-				System.out.println("Set Username");
+				try {
+					System.out.println("connect");
+					int port = Integer.parseInt(currentLine[2]);
+					String username = currentLine[3];
+					InetAddress ipAddress = getHostByName(currentLine[1]);
+					System.out.println("" + ipAddress + port + username);
+					//_controller.connect(ipAddress, port, username);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 			} else if (command.equals("logfile")) {
 				try {
 					_controller.setLogger(new File(currentLine[1]));
 					_controller.turnLogOn();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (command.equals("log:on")) {
 				_controller.turnLogOn();
 			} else if (command.equals("log:off" )) {
 				_controller.turnLogOff();
+			} else if (command.equals("help")) {
+				printHelpMsg();
+			} else if (command.equals("status")) {
+				System.out.println("currently under development");
 			} else {
-				System.out.println("command not found");
+				System.out.println("command not found. See \\help for further information");
 			}
 		
 		// check whether the message is private nor not		
@@ -96,24 +98,28 @@ public class ChatClientCLI implements IfcUserInterface {
 			currentLine[0] = currentLine[0].replaceFirst("/", "");
 			String receipt = currentLine[0];
 			System.out.println("sending msg to user " + receipt);
-		} else {
-			System.out.println("sending msg to all users");
-		}
-		
-			//		if (inText.startsWith("/quit")) {
-//			return "Exit Command";
-//		} else if (){
-//			
-//		} else {
-//			return "Command not found";
-//		}
+		} else if (currentLine[0].matches("\\w+")){
+			//System.out.println("sending msg to all users");
+			//_controller.send(inText);
+		}	
 	}
 	
-	public void postMsg(String line) {
-		msgParser(line);
+	private InetAddress getHostByName(String name) throws UnknownHostException{
+			return InetAddress.getByName(name);
 	}
+	
+	private void printHelpMsg() {
+		System.out.println("currently supported commands");
+		System.out.println("****************************");
+		System.out.println("\\help\t\t\tDisplay this help message");
+		System.out.println("\\connect <h> <p> <u>\tConnect as <u> to <h> <pp> ");
+		System.out.println("\\quit\t\t\tExit Chat");
+		System.out.println("\\logfile\t\tSet path to logfile. This will turn on logging as well");
+		System.out.println("\\log:(on|off)\t\tTurn log on / off");
+		System.out.println("\\status\t\t\tDisplays info about current connection status");
+	}
+	
 	private void welcomeMsg() {
-
 		System.out.println("Welcome to the CLI-Chat Client IRCv2" + System.getProperty("line.separator"));
 		// TODO print out the help (possible commands)
 	}
@@ -130,8 +136,7 @@ public class ChatClientCLI implements IfcUserInterface {
 	}
 
 	public void displayConnStatus(String connectionStatus) {
-		// TODO evtl. use a write-buffer
-		// System.out.println(connectionStatus);
+		System.out.println("You are " + connectionStatus);
 	}
 
 	/**
