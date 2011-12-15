@@ -38,12 +38,12 @@ public class ServerThreadTest {
 
 	}
 
-	@Test
+	// @Test
 	public void testRun() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	// @Test
 	public void testServerThread() {
 		fail("Not yet implemented");
 	}

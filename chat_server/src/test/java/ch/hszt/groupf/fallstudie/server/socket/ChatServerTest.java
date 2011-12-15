@@ -10,7 +10,6 @@ import java.net.Socket;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class ChatServerTest {
 	private ChatServer _socketServer;
@@ -70,7 +69,7 @@ public class ChatServerTest {
 	 * Tests if the SocketServer calls system.exit(0), when the newServerSockets
 	 * throws an IOException
 	 */
-	@Test
+	// @Test
 	public void testSocketServerStopsOnIOEx() {
 		// try {
 		// new ChatServer(ServerDefaultConfig.SERVERPORT) {
@@ -88,27 +87,27 @@ public class ChatServerTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	// @Test
 	public void testSendJoinedMsg() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	// @Test
 	public void testSendToAll() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	// @Test
 	public void testSendToSpecificUser() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	// @Test
 	public void testRemoveConnection() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	// @Test
 	public void testAddUserToMap() {
 		fail("Not yet implemented");
 	}
