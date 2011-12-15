@@ -70,6 +70,7 @@ public class ChatServerTest {
 	 * Tests if the SocketServer calls system.exit(0), when the newServerSockets
 	 * throws an IOException
 	 */
+	// TODO Testen, dass der SocketServer bei einer IOException stopt
 	// @Test
 	public void testSocketServerStopsOnIOEx() {
 		// try {
