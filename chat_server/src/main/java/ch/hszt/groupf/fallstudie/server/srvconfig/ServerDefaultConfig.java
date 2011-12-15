@@ -1,5 +1,13 @@
 package ch.hszt.groupf.fallstudie.server.srvconfig;
 
+/**
+ * The ServerDefaultConfig contains the default value for the server. e.g. the
+ * default serverport
+ * 
+ * @author rest
+ * 
+ */
+
 public class ServerDefaultConfig {
 
 	/**
