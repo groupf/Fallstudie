@@ -10,6 +10,7 @@ import java.net.Socket;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class ChatServerTest {
 	private ChatServer _socketServer;
@@ -87,9 +88,10 @@ public class ChatServerTest {
 		fail("Not yet implemented");
 	}
 
-	// @Test
+	// TODO test sendJoindMsg storie
+	@Test
 	public void testSendJoinedMsg() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 	// @Test

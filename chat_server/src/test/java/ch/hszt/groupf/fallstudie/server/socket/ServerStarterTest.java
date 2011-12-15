@@ -19,8 +19,8 @@ public class ServerStarterTest {
 	}
 
 	/**
-	 * Test, if the ServerStarter Class starts with the user-specified port, if
-	 * it is valid. Valid is every Integer greater than 1024.
+	 * Tests, if the ServerStarter Class starts with the user-specified port, if
+	 * the given one is valid. Valid is every Integer greater than 1024.
 	 */
 	@Test
 	public void testGetServerPortToStart() {
