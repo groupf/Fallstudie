@@ -104,10 +104,10 @@ public class ClientControllerTest {
 	 * Wenn der Controller mit dem Parameter '-c' gestartet wird, muss verifiziert werden, 
 	 * dass die CLI instanziert wird. Ansonsten soll die GUI Klasse instanziert werden. 
 	 */
-	@Test
-	public void testMain() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testMain() {
+//		fail("Not yet implemented");
+//	}
 
 	/**
 	 * Simuliertes Verhalten auf dem Socket: 
@@ -117,20 +117,20 @@ public class ClientControllerTest {
 	 * 
 	 * evtl. zweiter Testfall: Exception wird vom Socket geworfen, nachdem die Verbindung erfolgreich aufgebaut wurde.
 	 */
-	@Test
-	public void testOnDisconnected() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testOnDisconnected() {
+//		fail("Not yet implemented");
+//	}
 	
 /**
  * Der Socket hat eine neue Mitteilung erhalten, diese soll an das Userinterface weitergeleitet werden.
  */
-	@Test
-	public void testOnReceivedMsg() {
-		fail("Not yet implemented");
-
-		// assertFalse(false);
-	}
+//	@Test
+//	public void testOnReceivedMsg() {
+//		fail("Not yet implemented");
+//
+//		// assertFalse(false);
+//	}
 
 	/**
 	 * Testfall: erfollgreicher Connect (mit CLI instanziert). Die Methode connect wurde auf dem Socket-Objekt aufgerufen.
@@ -171,10 +171,10 @@ public class ClientControllerTest {
 	/**
 	 * Auf dem Userinterface wurde die send-Methode aufgerufen. Es wird erwartet, dass die übergebene Mitteilung an den Socket übergeben wird. (send-Methode auf dem Socket)
 	 */
-	@Test
-	public void testSend() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testSend() {
+//		fail("Not yet implemented");
+//	}
 
 /**
  * was wird hier getestet? -->Micha
