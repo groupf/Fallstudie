@@ -1,4 +1,4 @@
-package ch.hszt.groupf.fallstudie.client.controller;
+cpackage ch.hszt.groupf.fallstudie.client.controller;
 
 import java.io.File;
 import java.io.IOException;

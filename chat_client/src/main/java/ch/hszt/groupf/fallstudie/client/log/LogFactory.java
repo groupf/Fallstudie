@@ -18,15 +18,30 @@ public class LogFactory {
 	private DateFormat dateFormat;
 	Date date;
 
-	public LogFactory(File file) throws IOException {
 
+	/**
+	 * Create a new LogFactory with a file. The file is a .txt file on the local machine.
+	 * 
+	 * @param file This is the file on the local machine for writing the Log into
+	 * @throws IOException If the log cannot be created (wrong permission) IOException will be thrown
+	 */
+	public LogFactory(File file) throws IOException {
 		_myFile = file;
 		_fstream = new FileWriter(_myFile);
 		_writer = new BufferedWriter(_fstream);
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	}
-
+/**
+ * This constructor ist just used for the JUnit/Mock Test.
+ * We use String Writer instead of Buffered Writer.
+ * In Java StringWriter and BufferedWriter both extends Writer.
+ * So they have the same  
+ * 
+ * 
+ * @param writer
+ * @throws IOException
+ */
 	public LogFactory(StringWriter writer) throws IOException {
 
 		// if (writer==null) throw new IOException();
@@ -74,6 +89,9 @@ public class LogFactory {
 		}
 	}
 
+	/**
+	 * It's just used to create a new line in the log.
+	 */
 	public void writeLogJustANewLine() {
 
 		try {

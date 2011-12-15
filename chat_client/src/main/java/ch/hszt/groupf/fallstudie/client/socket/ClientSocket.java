@@ -15,8 +15,7 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 	private IfcSocketClientConsumer _sktClientConsumer;
 	private String _socketUserName;
 
-	// TODO Change _serverAddress to InetAddress or Inet4Address
-	private InetAddress _serverAddress;
+	private InetAddress _serverInetAddress;
 	// TODO Change _serverPort to a Port-Class
 	private int _serverPort;
 
@@ -31,11 +30,11 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 	public void connect(InetAddress inServerAddress, int inServerPort, String inUserName) throws UnknownHostException,
 			IOException, IllegalArgumentException {
 
-		_serverAddress = inServerAddress;
+		_serverInetAddress = inServerAddress;
 		_serverPort = inServerPort;
 		_socketUserName = inUserName;
 
-		_clientSocket = getNewSocket(_serverAddress, _serverPort);
+		_clientSocket = getNewSocket(_serverInetAddress, _serverPort);
 		// TODO Appender to the Log, that the Socket was opened
 
 		_clientDataIn = getNewDataInputStream(_clientSocket);
