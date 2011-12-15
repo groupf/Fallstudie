@@ -24,7 +24,8 @@ public class ChatClientCLI implements IfcUserInterface {
 		_controller = inClientController;
 		runSubshell();
 	}
-
+	
+	
 	private void runSubshell() {
 		String inText = "";
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

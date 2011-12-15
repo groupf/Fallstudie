@@ -475,7 +475,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 	}
 
-	public void displayConnStatus(String connectionStatus) {
+	public void displayConnStatus() {
 		// TODO Auto-generated method stub
 
 	}
