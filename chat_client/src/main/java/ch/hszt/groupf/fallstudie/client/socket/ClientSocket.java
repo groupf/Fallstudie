@@ -14,6 +14,7 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 	private DataOutputStream _clientDataOut;
 	private IfcSocketClientConsumer _sktClientConsumer;
 	private String _socketUserName;
+	private boolean isConnected;
 
 	private InetAddress _serverInetAddress;
 	// TODO Change _serverPort to a Port-Class
@@ -23,6 +24,7 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 		if (inSktClientConsumer == null)
 			throw new IllegalArgumentException("inSktClientConsumer must not be null");
 		_sktClientConsumer = inSktClientConsumer;
+		isConnected = false;
 		// public ClientSocket(String inServerAddress, int inServerPort) {
 		// TODO ServerAddress and ServerPort Validation with Exception throw
 	}
@@ -77,7 +79,7 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 
 	public void run() {
 
-		boolean isConnected = true;
+		isConnected = true;
 
 		while (isConnected) {
 			String message = "";
@@ -94,5 +96,9 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 			_sktClientConsumer.onReceivedMsg(message);
 		}
 
+	}
+	
+	public boolean isConnected() {
+		return isConnected;
 	}
 }

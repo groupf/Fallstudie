@@ -49,7 +49,6 @@ public class ChatClientCLI implements IfcUserInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	private void msgParser(String inText)  {
@@ -136,7 +135,7 @@ public class ChatClientCLI implements IfcUserInterface {
 	}
 
 	public void displayConnStatus(String connectionStatus) {
-		System.out.println("You are " + connectionStatus);
+		System.out.println("You are " + _controller.isConnected());
 	}
 
 	/**

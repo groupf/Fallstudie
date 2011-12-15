@@ -13,4 +13,5 @@ public interface IfcClientSocket {
 
 	public void sendMsg(String message) throws IOException;
 
+	public boolean isConnected();
 }

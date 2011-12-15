@@ -150,4 +150,8 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	}
 
+	public boolean isConnected() {
+		return _chatClient.isConnected();
+	}
+	
 }
