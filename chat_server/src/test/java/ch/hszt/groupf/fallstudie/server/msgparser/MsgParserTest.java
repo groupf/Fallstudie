@@ -26,6 +26,7 @@ public class MsgParserTest {
 
 	@Before
 	public void setUp() throws Exception {
+		MsgParser msgP = new MsgParser();
 	}
 
 	@After
