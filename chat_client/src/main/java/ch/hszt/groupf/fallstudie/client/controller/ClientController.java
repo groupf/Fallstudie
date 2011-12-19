@@ -30,30 +30,26 @@ public class ClientController implements IfcSocketClientConsumer {
 			_userInterface = getNewChatClientGUI(this);
 		}
 
-		// _userInterface.setVisible(true);
 
 	}
 
-//	public ClientController(boolean startCLI, boolean testing) {
-//		_chatClient = new ClientSocket(this);
-//
-//		if (startCLI) {
-//			_userInterface = new ChatClientCLI(this, true);
-//
-//		} else {
-//			_userInterface = new ChatClientGUI(this, true);
-//		}
-		// _userInterface.setVisible(true);
-//	}
 
 	protected IfcClientSocket getNewClientSocket(IfcSocketClientConsumer inSktClientConsumer) {
 		return new ClientSocket(inSktClientConsumer);
 	}
 
-	protected IfcUserInterface getNewChatClientCLI(ClientController inCltController) {
+	/**
+	 * @param inCltController This is 
+	 * @return gives the reference of a new created Chat Client CLI back
+	 */protected IfcUserInterface getNewChatClientCLI(ClientController inCltController) {
 		return new ChatClientCLI(inCltController);
 	}
 
+	/**
+	 * @param inCltController
+	 * @return gives the reference of a new created Chat Client CLI back
+	 */
+	
 	protected IfcUserInterface getNewChatClientGUI(ClientController inCltController) {
 		return new ChatClientGUI(inCltController);
 	}
