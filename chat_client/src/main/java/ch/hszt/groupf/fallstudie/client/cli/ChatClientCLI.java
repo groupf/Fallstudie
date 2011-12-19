@@ -14,16 +14,26 @@ import ch.hszt.groupf.fallstudie.client.controller.ClientController;
 import ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface;
 import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 
+/**
+ * 
+ * @author groupf
+ */
+
 
 public class ChatClientCLI implements IfcUserInterface {
 	private boolean _exitCLI = false;
 	private final ClientController _controller;
 	private String[] goodByeMessages = {"Good bye","See you soon","CYA", "Bye", "Peace"};
 
+	
+	
 	public ChatClientCLI(ClientController inClientController) {
 		_controller = inClientController;
 		runSubshell();
 	}
+	
+	
+	
 
 	private void runSubshell() {
 		String inText = "";
@@ -118,6 +128,10 @@ public class ChatClientCLI implements IfcUserInterface {
 		System.out.println("\\status\t\t\tDisplays info about current connection status");
 	}
 	
+	
+	/**
+	 * This is the Title of the Frame in the GUI.
+	 */
 	private void welcomeMsg() {
 		System.out.println("Welcome to the CLI-Chat Client IRCv2" + System.getProperty("line.separator"));
 		// TODO print out the help (possible commands)
@@ -134,6 +148,8 @@ public class ChatClientCLI implements IfcUserInterface {
 		System.out.println(inMessage);
 	}
 
+	
+	
 	public void displayConnStatus() {
 		System.out.println("You are " + _controller.isConnected());
 	}

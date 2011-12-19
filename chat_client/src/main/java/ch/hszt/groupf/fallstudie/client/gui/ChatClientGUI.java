@@ -21,6 +21,7 @@ import java.net.InetAddress;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
@@ -30,27 +31,32 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 /**
  * 
  */
+@SuppressWarnings("serial")
 public class ChatClientGUI extends javax.swing.JFrame implements
 		IfcUserInterface {
 
 	private final ClientController _controller;
 
+	// javax.swing.JLabel _jLblConnStatus = new javax.swing.JLabel();
+
 	/** Creates new form ChatClientGUI */
 	public ChatClientGUI(ClientController inClientController) {
 		_controller = inClientController;
+		//test
+		_jLblConnStatus = new javax.swing.JLabel();
 		init();
 		initComponents();
 		setVisible(true);
 
 	}
-	
-//	public ChatClientGUI(ClientController inClientController, boolean test) {
-//		_controller = inClientController;
-//		init();
-//		initComponents();
-//		setVisible(true);
 
-//	}
+	// public ChatClientGUI(ClientController inClientController, boolean test) {
+	// _controller = inClientController;
+	// init();
+	// initComponents();
+	// setVisible(true);
+
+	// }
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -77,7 +83,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		_jTxtAInput = new javax.swing.JTextArea();
 		_jBtnSend = new javax.swing.JButton();
 		_jLblConnLbl = new javax.swing.JLabel();
-		_jLblConnStatus = new javax.swing.JLabel();
+//		_jLblConnStatus = new javax.swing.JLabel();
 		jLabelLog = new javax.swing.JLabel();
 		_jMenuBar = new javax.swing.JMenuBar();
 		_jMenuConn = new javax.swing.JMenu();
@@ -284,6 +290,12 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 	}
 
+	/**
+	 * This method is method which will be called from the connection menu.
+	 * It tries to connect the client to the server.
+	 * 
+	 * @param evt
+	 */
 	private void onOpenConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onOpenConnection
 		ChatClientConnGUI clientConnGUI = new ChatClientConnGUI(this, true);
 		clientConnGUI.setVisible(true);
@@ -292,16 +304,26 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		int serverPort = clientConnGUI.getServerPort();
 		if (serverAddress != null) {
 			_controller.connect(serverAddress, serverPort, username);
+			displayConnStatus();
 		}
 	}// GEN-LAST:event_onOpenConnection
 
+	
+	/**
+	 * This method will disconnect the client from the server.
+	 * It will close the log and set the status to not connected.
+	 * 
+	 * @param evt
+	 */
 	private void onCloseConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onCloseConnection
 
-		/**
-		 * Here is missing the code for closing a chat-connection from the
-		 * server to the client
-		 */
+		//TODO wie soll sich der client beim server abmelden?
+		
+		_controller.getLogger().writeLog("The client will no disconnect from the server.");
+		_controller.turnLogOff();
+		
 
+		
 	}// GEN-LAST:event_onCloseConnection
 
 	/**
@@ -407,11 +429,14 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 							}
 
 							_controller.turnLogOn();
-							_controller.getLogger().writeFirstLogAfterTurnedOn();
+							_controller.getLogger()
+									.writeFirstLogAfterTurnedOn();
 						} else
 							_controller.turnLogOn();
-						System.out
-								.println("Das Log wurde erfolgreich eingeschaltet.");
+						/**
+						 * The sysout is just for testing
+						 */
+						System.out	.println("Das Log wurde erfolgreich eingeschaltet.");
 					}
 				}));
 
@@ -419,10 +444,11 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 				.addActionListener((new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						jLabelLog.setText("Log is off");
-
 						_controller.turnLogOff();
 
-						// _logisOn = false;
+						/**
+						 * The sysout is just for testing
+						 */
 						System.out
 								.println("Das Log wurde erfolgreich ausgeschaltet");
 					}
@@ -444,6 +470,12 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 	}
 
+	/**
+	 * With this methode the user choose a text file which is the Log file. It has to be a .txt file
+	 * 
+	 * @return
+	 * @throws IOException Thrown, if the file don't exist or can not be readed/writed.
+	 */
 	private File chooseLogTextFile() throws IOException {
 		BufferedWriter _bufferedWriter;
 		FileWriter _fstream;
@@ -472,21 +504,31 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 	public void onDisconnected(Exception inEx) {
 		// TODO Auto-generated method stub
-
+		displayConnStatus();
 	}
 
+	/**
+	 * Will write the connecting status of the client in the bottom of the GUI.
+	 */
 	public void displayConnStatus() {
-		// TODO Auto-generated method stub
 
-	}
+if(_controller.isConnected())		{
+	_jLblConnStatus.setText("Client is connected");
 	
+}
+else{
+	_jLblConnStatus.setText("Not connected");
+	
+}
+}
+
 	/**
 	 * This method is just used for JUnit Tests
 	 */
-	public void setLoggeronController(File file) throws IOException, NullPointerException{
+	public void setLoggeronController(File file) throws IOException,
+			NullPointerException {
 		_controller.setLogger(file);
-		
-		
+
 	}
 
 	@Override
@@ -498,6 +540,5 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 	public String getChatClientString() {
 		return "GUI";
 	}
-	
-	
+
 }
