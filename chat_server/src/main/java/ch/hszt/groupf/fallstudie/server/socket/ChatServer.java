@@ -91,7 +91,12 @@ public class ChatServer {
 				// InputStreamReader(singleSocket.getInputStream()));
 
 				// String socketUserName = reader.readLine();
-				String socketUserName = getIncomingSocketUserName(singleSocket);
+
+				/*
+				 * Due to the specification the User first sends, on an
+				 * established connection, the username.
+				 */
+				String socketUserName = getFirstIncomingString(singleSocket);
 				DataOutputStream doutStream = getDosFromSocket(singleSocket);
 
 				addUserToMap(socketUserName, doutStream);
@@ -110,14 +115,46 @@ public class ChatServer {
 		}
 	}
 
-	protected String getIncomingSocketUserName(Socket inSocket) throws IOException, IllegalArgumentException {
+	/**
+	 * The method returns the String received by the Socket and should be used
+	 * only the first time, when the Connection established
+	 * 
+	 * @param inSocket
+	 *            Socket on which the ChatServer listens
+	 * @return a String with the first received stream-message.
+	 * @throws IOException
+	 *             when the Stream on the Socket could not be opened.
+	 */
+	protected String getFirstIncomingString(Socket inSocket) throws IOException {
 		return (new DataInputStream(inSocket.getInputStream())).readUTF();
 	}
 
+	/**
+	 * Returns the DataOutputStream from the Socket in the Arguments. This
+	 * method is especially used for testing due to return the mock-object.
+	 * 
+	 * @param inSocket
+	 *            Socket on which the ChatServer listens
+	 * @return is a DataOutputStream which results out of the method-call
+	 *         getOutputStream()
+	 * @throws IOException
+	 *             if the method-call getOutputStream() on the inSocket throws
+	 *             an IOException, the Exception is rethrown.
+	 */
 	protected DataOutputStream getDosFromSocket(Socket inSocket) throws IOException {
 		return new DataOutputStream(inSocket.getOutputStream());
 	}
 
+	/**
+	 * Returns the new ServerSocket Object. This method is especially used for
+	 * testing due to return mock-objects.
+	 * 
+	 * @param inServerPort
+	 *            the portnummber on which the ServerSocket will be started.
+	 * @return a new ServerSocket
+	 * @throws IOException
+	 *             when the ServerSocket could not be established.
+	 */
 	protected ServerSocket newServerSocket(int inServerPort) throws IOException {
 		return new ServerSocket(inServerPort);
 	}
