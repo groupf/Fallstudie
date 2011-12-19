@@ -33,11 +33,6 @@ public class ChatClientCLI implements IfcUserInterface {
 	}
 	
 	
-<<<<<<< HEAD
-	
-
-=======
->>>>>>> 28a9c92d6da0cca47b71ff801826dac0a05e5cb6
 	private void runSubshell() {
 		String inText = "";
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
