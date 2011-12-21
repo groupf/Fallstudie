@@ -6,8 +6,16 @@ import java.io.IOException;
 import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 import ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer;
 
-
+/**
+ * Describes the stategy of the Client User Interfaces like ChatClientGUI or ChatClientCLI
+ * 
+ * @author groupf
+ */
 public interface IfcUserInterface extends IfcSocketClientConsumer {
+	
+	/**
+	 * Shows on the Client Interface the status of the connection. Connected or not connected.
+	 */
 	public void displayConnStatus();
 	
 	/**

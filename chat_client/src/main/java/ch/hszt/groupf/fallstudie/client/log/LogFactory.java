@@ -10,6 +10,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class descibes the Log (its a LogFactory). It can be used from all
+ * ChatClient's to write into the Log. The Log must be written into a .txt file.
+ * It is not allowed to print the log on the CLI or into the GUI directely.
+ * 
+ * At the moment we just can turn on or turn off the log. It is not possible for
+ * some different log levels like normal, debug...
+ * 
+ * @author groupf
+ */
+
 public class LogFactory {
 
 	private Writer _writer;
@@ -18,12 +29,15 @@ public class LogFactory {
 	private DateFormat dateFormat;
 	Date date;
 
-
 	/**
-	 * Create a new LogFactory with a file. The file is a .txt file on the local machine.
+	 * Create a new LogFactory with a file. The file is a .txt file on the local
+	 * machine.
 	 * 
-	 * @param file This is the file on the local machine for writing the Log into
-	 * @throws IOException If the log cannot be created (wrong permission) IOException will be thrown
+	 * @param file
+	 *            This is the file on the local machine for writing the Log into
+	 * @throws IOException
+	 *             If the log cannot be created (wrong permission) IOException
+	 *             will be thrown
 	 */
 	public LogFactory(File file) throws IOException {
 		_myFile = file;
@@ -32,37 +46,36 @@ public class LogFactory {
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	}
-/**
- * This constructor ist just used for the JUnit/Mock Test.
- * We use String Writer instead of Buffered Writer.
- * In Java StringWriter and BufferedWriter both extends Writer.
- * So they have the same  
- * 
- * 
- * @param writer
- * @throws IOException
- */
+
+	/**
+	 * This constructor ist just used for the JUnit/Mock Test. We use String
+	 * Writer instead of Buffered Writer. In Java StringWriter and
+	 * BufferedWriter both extends Writer. So they have the same
+	 * 
+	 * @param writer
+	 * @throws IOException
+	 */
 	public LogFactory(StringWriter writer) throws IOException {
 
-		// if (writer==null) throw new IOException();
 		_writer = writer;
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		// writeFirstLogAfterTurnedOn();
 	}
 
-	// }
-
+	/**
+	 * After turning the log on, this method write the first log into the
+	 * logfile. So we can see later on what time the log has turned on.
+	 */
 	public void writeFirstLogAfterTurnedOn() {
-		// dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		// date = new Date();
 		writeLog("The Log turned on:");
 		writeLog("****************************************");
 		writeLogJustANewLine();
 	}
 
+	/**
+	 * Before turning the log off, this method write the last log into the
+	 * logfile. So we can see later on what time the log has turned off.
+	 */
 	public void writeLogBeforeTurnOff() {
-		// dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		// date = new Date();
 		writeLog("The Log turned off:");
 		writeLog("****************************************");
 		writeLogJustANewLine();
@@ -91,6 +104,7 @@ public class LogFactory {
 
 	/**
 	 * It's just used to create a new line in the log.
+	 * So we don't have to duplicate code.
 	 */
 	public void writeLogJustANewLine() {
 

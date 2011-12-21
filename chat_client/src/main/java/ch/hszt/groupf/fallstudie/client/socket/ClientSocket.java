@@ -20,22 +20,35 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 	// TODO Change _serverPort to a Port-Class
 	private int _serverPort;
 
+	/**
+	 * 
+	 * @param inSktClientConsumer
+	 *            This is the Interface which describes the properties of the
+	 *            ClientController
+	 */
 	public ClientSocket(IfcSocketClientConsumer inSktClientConsumer) {
 		if (inSktClientConsumer == null)
-			throw new IllegalArgumentException("inSktClientConsumer must not be null");
+			throw new IllegalArgumentException(
+					"inSktClientConsumer must not be null");
 		_sktClientConsumer = inSktClientConsumer;
 		isConnected = false;
-		// public ClientSocket(String inServerAddress, int inServerPort) {
-		// TODO ServerAddress and ServerPort Validation with Exception throw
 	}
 
-	public void connect(InetAddress inServerAddress, int inServerPort, String inUserName) throws UnknownHostException,
-			IOException, IllegalArgumentException {
-
+/**
+ * This method tries to connect from the client to the server. For connecting the method need the following parameters.
+ * 
+ * @param inServerAddress	This is the Server's IP or DNS Adress.
+ * @param inServerPort		This is the Port on the Server where the Chat-Server services is working on.
+ * @param inUserName		This is the username of the client which wants to connect to the server. The name has to be unique.
+ * 
+ * 
+ */
+	public void connect(InetAddress inServerAddress, int inServerPort,
+			String inUserName) throws UnknownHostException, IOException,
+			IllegalArgumentException {
 		_serverInetAddress = inServerAddress;
 		_serverPort = inServerPort;
 		_socketUserName = inUserName;
-
 		_clientSocket = getNewSocket(_serverInetAddress, _serverPort);
 		// TODO Appender to the Log, that the Socket was opened
 
@@ -43,17 +56,13 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 		_clientDataOut = getNewDataOutputStream(_clientSocket);
 		_clientDataOut.writeUTF(_socketUserName);
 
+		/**
+		 * Start the threat of the Client Socket (this)
+		 */
 		new Thread(this).start();
 
 	}
 
-	// void setClientSocket(Socket inclientSocket) {
-	// _clientSocket = inclientSocket;
-	// }
-	//
-	// void setClientDataOut(DataOutputStream inclientDataOut) {
-	// _clientDataOut = inclientDataOut;
-	// }
 
 	DataOutputStream getNewDataOutputStream(Socket inSocket) throws IOException {
 		return new DataOutputStream(inSocket.getOutputStream());
@@ -63,9 +72,11 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 		return new DataInputStream(inSocket.getInputStream());
 	}
 
-	Socket getNewSocket(InetAddress inServerAddress, int inServerPort) throws IOException {
+	Socket getNewSocket(InetAddress inServerAddress, int inServerPort)
+			throws IOException {
 		if (inServerPort < 0)
-			throw new IllegalArgumentException("inServerPort must be greater or equals 0");
+			throw new IllegalArgumentException(
+					"inServerPort must be greater or equals 0");
 		return new Socket(inServerAddress, inServerPort);
 	}
 
@@ -97,7 +108,7 @@ public class ClientSocket implements IfcClientSocket, Runnable {
 		}
 
 	}
-	
+
 	public boolean isConnected() {
 		return isConnected;
 	}
