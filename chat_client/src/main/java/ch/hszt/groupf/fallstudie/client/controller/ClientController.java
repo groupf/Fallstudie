@@ -118,7 +118,8 @@ public class ClientController implements IfcSocketClientConsumer {
 	}
 
 	public void onDisconnected(Exception inEx) {
-		// TODO Auto-generated method stub
+		
+
 
 	}
 
