@@ -51,12 +51,15 @@ public class ChatServer {
 	 */
 	private void listen(int inServerPort) {
 
+		/*
+		 * Opens a new ServerSocket If inServerPort is an IllegalArgument, the
+		 * ChatServer tries to start on the default port.
+		 */
 		try {
-			/*
-			 * Opens a new ServerSocket
-			 */
 			_serverSocket = newServerSocket(inServerPort);
 
+			/*
+			 */
 		} catch (IllegalArgumentException e) {
 			logger.info("Tried to start the ServerSocket on a illegal portnumber! Server will be started on the default port "
 					+ ServerDefaultConfig.SERVERPORT);
@@ -102,7 +105,7 @@ public class ChatServer {
 				addUserToMap(socketUserName, doutStream);
 				// _openOutputStreams.put(socketUserName, doutStream);
 
-				(new ServerThread(this, singleSocket, socketUserName)).start();
+				startNewServerThread(this, singleSocket, socketUserName);
 
 			} catch (IOException e) {
 				logger.warn("IO Exception occured during the opening of an incoming Connection.");
@@ -176,6 +179,13 @@ public class ChatServer {
 		}
 	}
 
+	/**
+	 * When an new user is connected to the Chatserver, the Chatserver sends a
+	 * 'Joind'-Message to all other active users.
+	 * 
+	 * @param inUserName
+	 *            the username of newly connected user
+	 */
 	protected void sendJoinedMsg(String inUserName) {
 		synchronized (_openOutputStreams) {
 			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()) {
@@ -190,6 +200,15 @@ public class ChatServer {
 		}
 	}
 
+	/**
+	 * The default behavior of the Chatserver is to send every received message
+	 * to every connected user.
+	 * 
+	 * @param inMessage
+	 *            the received message String to deliver
+	 * @param inSenderUser
+	 *            the senders name
+	 */
 	protected void sendToAll(String inMessage, String inSenderUser) {
 		synchronized (_openOutputStreams) {
 			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()) {
@@ -205,23 +224,43 @@ public class ChatServer {
 		}
 	}
 
+	/**
+	 * If the Chatserver receives a message which indicates, that it is for a
+	 * specific user, the Chatserver delivers the received message only to the
+	 * specified recipient.
+	 * 
+	 * @param inSender
+	 *            the senders name
+	 * @param inRecipient
+	 *            the recipients name
+	 * @param inMessage
+	 *            the message text
+	 */
 	protected void sendToSpecificUser(String inSender, String inRecipient, String inMessage) {
 		synchronized (_openOutputStreams) {
 			try {
 				_openOutputStreams.get(inRecipient).writeUTF("from " + inSender + ": " + inMessage);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				try {
 					_openOutputStreams.get(inSender).writeUTF("Could not send spezific Message to User" + inRecipient);
 					logger.info("Could not send spezific Message from User " + inSender + " to User" + inRecipient);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					logger.info("Could not send Message to User" + inSender);
 				}
 			}
 		}
 	}
 
+	/**
+	 * If a user closes a connection, the corresponding ServerThread removes the
+	 * entry for that user in the Map.
+	 * 
+	 * @param inUserName
+	 *            username whoes connection had been closed
+	 * @param inSocket
+	 *            the Socket corresponding to the username which will be closed.
+	 */
 	protected void removeConnection(String inUserName, Socket inSocket) {
 		synchronized (_openOutputStreams) {
 			// TODO Appender to logger that a Connection is removed
@@ -237,5 +276,19 @@ public class ChatServer {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Starts a new ServerThread for every new established connection.
+	 * 
+	 * @param inChatServer
+	 *            the reference to the ChatServer
+	 * @param inSocket
+	 *            the Socket on which the client-connection established
+	 * @param inSocketUserName
+	 *            the corresponding username to the socket (client-connection)
+	 */
+	protected void startNewServerThread(ChatServer inChatServer, Socket inSocket, String inSocketUserName) {
+		(new ServerThread(this, inSocket, inSocketUserName)).start();
 	}
 }

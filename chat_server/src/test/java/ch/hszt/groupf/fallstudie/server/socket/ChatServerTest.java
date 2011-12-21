@@ -3,6 +3,7 @@ package ch.hszt.groupf.fallstudie.server.socket;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -13,6 +14,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import ch.hszt.groupf.fallstudie.server.srvconfig.ServerDefaultConfig;
 
@@ -82,7 +85,7 @@ public class ChatServerTest {
 	@Test(expected = ExitException.class)
 	public void testChatServerStopsOnIOExInNewServerSocket() throws Exception {
 		final Object lock = new Object();
-
+		counter = 0;
 		// when(_chatServer.newServerSocket(ServerDefaultConfig.SERVERPORT)).then(new
 		// Answer<Object>() {
 		// public Object answer(InvocationOnMock invocation) throws Throwable {
@@ -147,8 +150,125 @@ public class ChatServerTest {
 		assertEquals(1, counter);
 	}
 
-	// TODO test sendJoindMsg storie
+	/**
+	 * Tests if the SocketServer calls system.exit(0), when the newServerSockets
+	 * throws an IOException
+	 * 
+	 * @throws IOException
+	 */
+	// TODO Testen, dass der SocketServer bei einer IOException stopt
 	@Test
+	public void testChatServerOneSingleConnect() throws Exception {
+		final Object lock = new Object();
+		counter = 0;
+		// when(_serverSocket.accept()).thenReturn(_socket);
+		when(_serverSocket.isClosed()).then(new Answer<Object>() {
+			public Object answer(InvocationOnMock invocation) {
+
+				synchronized (lock) {
+					// while (counter == 0) {
+					// lock.notify();
+					// }
+					try {
+						if (counter == 0) {
+							return false;
+						} else {
+							return true;
+						}
+
+					} finally {
+						lock.notify();
+					}
+				}
+			}
+		});
+
+		when(_serverSocket.accept()).then(new Answer<Object>() {
+			public Object answer(InvocationOnMock invocation) throws Throwable {
+
+				synchronized (lock) {
+					// while (counter == 0) {
+					// lock.notify();
+					// }
+					try {
+						if (counter == 0) {
+							counter++;
+							return _socket;
+						} else {
+							throw new IOException();
+						}
+
+					} finally {
+						lock.notify();
+					}
+				}
+			}
+		});
+
+		_chatServer = new ChatServer(ServerDefaultConfig.SERVERPORT) {
+			@Override
+			protected ServerSocket newServerSocket(int inServerPort) throws IOException {
+
+				// throw new IOException();
+				// synchronized (lock) {
+				// try {
+				// counter++;
+				// throw new IOException();
+				// } finally {
+				// lock.notify();
+				// }
+				// }
+				return _serverSocket;
+			}
+
+			@Override
+			protected String getFirstIncomingString(Socket inSocket) throws IOException {
+
+				return "TestUser";
+				// synchronized (lock) {
+				// try {
+				// counter++;
+				// return "testuser";
+				// } finally {
+				// lock.notify();
+				// }
+				// }
+
+			}
+
+			@Override
+			protected DataOutputStream getDosFromSocket(Socket inSocket) throws IOException {
+				return _dos;
+			}
+
+			@Override
+			protected void startNewServerThread(ChatServer inChatServer, Socket inSocket, String inSocketUserName) {
+
+			}
+		};
+		synchronized (lock) {
+			while (counter == 0) {
+				lock.wait();
+			}
+		}
+
+		// try {
+		// new ChatServer(ServerDefaultConfig.SERVERPORT) {
+		// @Override
+		// protected ServerSocket newServerSocket(int inServerPort) throws
+		// IOException {
+		// throw new IOException();
+		// }
+		//
+		// };
+		// } catch (ExitException e) {
+		// assertEquals("Exit status", 0, e.status);
+		// }
+		assertEquals(1, counter);
+	}
+
+	// TODO test sendJoindMsg storie
+	// @Test
 	public void testSendJoinedMsg() {
 		// fail("Not yet implemented");
 	}
