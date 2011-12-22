@@ -15,9 +15,9 @@ import ch.hszt.groupf.fallstudie.server.msgparser.MsgParser;
 import ch.hszt.groupf.fallstudie.server.srvconfig.ServerDefaultConfig;
 
 /**
- * The SocketServer Class contains the most important Part of the Chat-Server.
- * It listens for incoming Chat-Client connections, opens a new Socket due to
- * the that request and starts a new ServerThread which corresponds to that new
+ * The ChatServer Class contains the most important Part of the Chat-Server. It
+ * listens for incoming Chat-Client connections, opens a new Socket due to the
+ * that request and starts a new ServerThread which corresponds to that new
  * Chat-Client connection. The open connections are kept in a Map with the
  * username as a Key and the DataOutputStream as the value from the
  * user-corresponding Socket.

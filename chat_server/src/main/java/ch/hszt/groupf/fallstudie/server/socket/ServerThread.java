@@ -32,8 +32,7 @@ public class ServerThread extends Thread {
 	 * @param inSocket
 	 * @param inSocketUserName
 	 */
-	public ServerThread(ChatServer inServer, Socket inSocket, String inSocketUserName)
-			throws IllegalArgumentException {
+	public ServerThread(ChatServer inServer, Socket inSocket, String inSocketUserName) throws IllegalArgumentException {
 
 		if ((inServer == null) || (inSocket == null) || (inSocketUserName == null)) {
 			throw new IllegalArgumentException(
