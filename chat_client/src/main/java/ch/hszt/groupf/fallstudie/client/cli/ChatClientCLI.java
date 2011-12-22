@@ -51,7 +51,6 @@ public class ChatClientCLI implements IfcUserInterface {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
 		try {
 			in.close();
@@ -176,7 +175,10 @@ public class ChatClientCLI implements IfcUserInterface {
 	 * @see ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface#displayConnStatus()
 	 */
 	public void displayConnStatus() {
-		System.out.println("You are " + _controller.isConnected());
+		String status = "disconnected"; 
+		if (_controller.isConnected())
+			 status = "connected";
+		System.out.println("You are " + status);
 	}
 
 	/* (non-Javadoc)
