@@ -15,6 +15,8 @@ import ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface;
 import ch.hszt.groupf.fallstudie.client.log.LogFactory;
 
 /**
+ * ChatClientCLI will provide the user a command line interface (cli) chat client. As it will not take any command line arguments,
+ * all operations (e.g. connect to server) will be done in the cli itself. 
  * 
  * @author groupf
  */
@@ -27,6 +29,9 @@ public class ChatClientCLI implements IfcUserInterface {
 
 	
 	
+	/**
+	 * @param inClientController
+	 */
 	public ChatClientCLI(ClientController inClientController) {
 		_controller = inClientController;
 		runSubshell();
@@ -59,6 +64,12 @@ public class ChatClientCLI implements IfcUserInterface {
 		}
 	}
 
+	/**
+	 * msgParser will parse any input line-by-line. It is able to differ between sending a command, a private message or a public message. 
+	 * If a command is typed msgParser will call a subroutine 
+	 * 
+	 * @param user input line
+	 */
 	private void msgParser(String inText)  {
 		// check whether a command is executed
 		String[] currentLine = inText.split(" ");
@@ -111,10 +122,20 @@ public class ChatClientCLI implements IfcUserInterface {
 		}	
 	}
 	
+	/**
+	 * Resolves a given fqdn. If your host is not resolvable by a name server an "UnknownHostException" will be thrown.
+	 *   
+	 * @param fqdn of remote server
+	 * @return	ip address of remote server
+	 * @throws UnknownHostException
+	 */
 	private InetAddress getHostByName(String name) throws UnknownHostException{
 			return InetAddress.getByName(name);
 	}
 	
+	/**
+	 * Displays a short help page containing all supported commands
+	 */
 	private void printHelpMsg() {
 		System.out.println("currently supported commands");
 		System.out.println("****************************");
@@ -135,12 +156,18 @@ public class ChatClientCLI implements IfcUserInterface {
 		// TODO print out the help (possible commands)
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer#onDisconnected(java.lang.Exception)
+	 */
 	public void onDisconnected(Exception ex) {
 		// TODO evtl. use a write-buffer
 		System.out.println("Connection lost!");
 
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer#onReceivedMsg(java.lang.String)
+	 */
 	public void onReceivedMsg(String inMessage) {
 		// TODO evtl. use a write-buffer
 		System.out.println(inMessage);
@@ -148,12 +175,15 @@ public class ChatClientCLI implements IfcUserInterface {
 
 	
 	
+	/* (non-Javadoc)
+	 * @see ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface#displayConnStatus()
+	 */
 	public void displayConnStatus() {
 		System.out.println("You are " + _controller.isConnected());
 	}
 
-	/**
-	 * This method is just used for JUnit Tests
+	/* (non-Javadoc)
+	 * @see ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface#setLoggeronController(java.io.File)
 	 */
 	@Override
 	public void setLoggeronController(File file) throws IOException, NullPointerException{
@@ -161,11 +191,17 @@ public class ChatClientCLI implements IfcUserInterface {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface#getLoggeronController()
+	 */
 	@Override
 	public LogFactory getLoggeronController() {
 		return _controller.getLogger();
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface#getChatClientString()
+	 */
 	@Override
 	public String getChatClientString() {
 		return "CLI";
