@@ -74,26 +74,14 @@ public class ChatClientCLI implements IfcUserInterface {
 			currentLine[0] = currentLine[0].replaceFirst("\\\\", "");
 			String command = currentLine[0];
 			
+			/* QUIT */
 			if (command.equals("quit")) {
 				System.out.println(goodByeMessages[new Random().nextInt(goodByeMessages.length)]);
 				_exitCLI = true;
 			} else if (command.equals("connect")){
-				try {
-					int port = Integer.parseInt(currentLine[2]);
-					String username = currentLine[3];
-					InetAddress ipAddress = getHostByName(currentLine[1]);
-					System.out.println("connecting to " + ipAddress + " on port " + port +  " as user " + username);
-					_controller.connect(ipAddress, port, username);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
+				connectToHost(currentLine);
 			} else if (command.equals("logfile")) {
-				try {
-					_controller.setLogger(new File(currentLine[1]));
-					_controller.turnLogOn();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				setLogfilePath(currentLine);
 			} else if (command.equals("log:on")) {
 				_controller.turnLogOn();
 			} else if (command.equals("log:off" )) {
@@ -140,6 +128,38 @@ public class ChatClientCLI implements IfcUserInterface {
 		System.out.println("\\logfile\t\tSet path to logfile. This will turn on logging as well");
 		System.out.println("\\log:(on|off)\t\tTurn log on / off");
 		System.out.println("\\status\t\t\tDisplays info about current connection status");
+	}
+	
+	/**
+	 * Set path to logfile and turn logging on.
+	 * 
+	 * @param command user has entered
+	 */
+	private void setLogfilePath(String[] currentLine) {
+		try {
+			_controller.setLogger(new File(currentLine[1]));
+			_controller.turnLogOn();
+		} catch (IOException e) {
+			System.out.println("[ERROR]: Cannot set path");
+		}
+	}
+	
+	/**
+	 * Method is used to connect to a server
+	 * 
+	 * @param command user has entered.
+	 */
+	private void connectToHost(String[] currentLine) {
+		int port = Integer.parseInt(currentLine[2]);
+		String username = currentLine[3];
+		String hostname = currentLine[1];
+		try {
+			InetAddress ipAddress = getHostByName(hostname);
+		_controller.connect(ipAddress, port, username);
+		} catch (UnknownHostException e) {
+			System.out.println("[ERROR]: Host " + hostname + " not found");
+		}
+
 	}
 	
 	
