@@ -79,12 +79,11 @@ public class ChatClientCLI implements IfcUserInterface {
 				_exitCLI = true;
 			} else if (command.equals("connect")){
 				try {
-					System.out.println("connect");
 					int port = Integer.parseInt(currentLine[2]);
 					String username = currentLine[3];
 					InetAddress ipAddress = getHostByName(currentLine[1]);
-					System.out.println("" + ipAddress + port + username);
-					//_controller.connect(ipAddress, port, username);
+					System.out.println("connecting to " + ipAddress + " on port " + port +  " as user " + username);
+					_controller.connect(ipAddress, port, username);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -114,7 +113,7 @@ public class ChatClientCLI implements IfcUserInterface {
 			System.out.println("sending msg to user " + receipt);
 		} else if (currentLine[0].matches("\\w+")){
 			//System.out.println("sending msg to all users");
-			//_controller.send(inText);
+			_controller.send(inText);
 		}	
 	}
 	
@@ -136,7 +135,7 @@ public class ChatClientCLI implements IfcUserInterface {
 		System.out.println("currently supported commands");
 		System.out.println("****************************");
 		System.out.println("\\help\t\t\tDisplay this help message");
-		System.out.println("\\connect <h> <p> <u>\tConnect as <u> to <h> <pp> ");
+		System.out.println("\\connect <h> <p> <u>\tConnect as <u> to host <h> on tcp/<p> ");
 		System.out.println("\\quit\t\t\tExit Chat");
 		System.out.println("\\logfile\t\tSet path to logfile. This will turn on logging as well");
 		System.out.println("\\log:(on|off)\t\tTurn log on / off");
