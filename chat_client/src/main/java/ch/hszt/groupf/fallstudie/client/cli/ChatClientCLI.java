@@ -20,8 +20,6 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
  * 
  * @author groupf
  */
-
-
 public class ChatClientCLI implements IfcUserInterface {
 	private boolean _exitCLI = false;
 	private final ClientController _controller;
@@ -38,8 +36,10 @@ public class ChatClientCLI implements IfcUserInterface {
 	}
 	
 	
+	/**
+	 * This method will read the user's input line-by-line.  
+	 */
 	private void runSubshell() {
-		String inText = "";
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 
@@ -50,8 +50,6 @@ public class ChatClientCLI implements IfcUserInterface {
 				msgParser(in.readLine());
 			} catch (IOException e) {
 				e.printStackTrace();
-//			} finally {
-//
 			}
 
 		}
@@ -59,7 +57,6 @@ public class ChatClientCLI implements IfcUserInterface {
 			in.close();
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
