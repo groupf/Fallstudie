@@ -54,14 +54,14 @@
 						<format>xml</format>
 					</formats>
           			<instrumentation>
-            			<ignores>
+            			<!--ignores>
               				<ignore>ch.hszt.groupf.fallstudie.client.gui*</ignore>
-            			</ignores>
-            			<!--excludes>
+            			</ignores-->
+            			<excludes>
             			    <exclude>ch/hszt/groupf/fallstudie/client/gui/*.class</exclude>
-              				<exclude>com/example/dullcode/**/*.class</exclude>
-              				<exclude>com/example/**/*Test.class</exclude>
-            			</excludes-->
+              				<!--exclude>com/example/dullcode/**/*.class</exclude-->
+              				<!--exclude>com/example/**/*Test.class</exclude-->
+            			</excludes>
           			</instrumentation>
         		</configuration>
                 <executions>
