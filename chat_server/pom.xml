@@ -51,7 +51,7 @@
         		<version>2.5.1</version>
         		<configuration>
         			<formats>
-						<format>html</format>
+						<!--format>html</format-->
 						<format>xml</format>
 					</formats>
           			<instrumentation>
@@ -59,7 +59,7 @@
               				<ignore>ch.hszt.groupf.fallstudie.server.srvconfig.*</ignore>
             			</ignores-->
             			<excludes>
-            				<exclude>ch/hszt/groupf/fallstudie/server/srvconfig/*.class</exclude>
+            				<!--exclude>ch/hszt/groupf/fallstudie/server/srvconfig/*.class</exclude-->
               				<!--exclude>com/example/dullcode/**/*.class</exclude-->
               				<!--exclude>com/example/**/*Test.class</exclude-->
             			</excludes>
