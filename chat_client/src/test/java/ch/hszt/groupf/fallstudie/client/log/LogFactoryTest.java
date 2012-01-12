@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
 import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,8 +15,7 @@ import org.junit.Test;
 
 public class LogFactoryTest {
 
-	private DateFormat dateFormatTest = new SimpleDateFormat(
-			"yyyy/MM/dd HH:mm:ss");
+	private DateFormat dateFormatTest = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private LogFactory myLog;
 	private StringWriter logOutput;
 
@@ -56,7 +54,7 @@ public class LogFactoryTest {
 
 		assertTrue(s.contains(excpected));
 		assertTrue(s.contains(excpected2));
-
+		fail("Demo-Test");
 	}
 
 	@Test

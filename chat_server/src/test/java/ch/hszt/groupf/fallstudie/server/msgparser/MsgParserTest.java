@@ -3,6 +3,7 @@ package ch.hszt.groupf.fallstudie.server.msgparser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -46,6 +47,7 @@ public class MsgParserTest {
 		assertFalse(MsgParser.isForSpecificUser("Hallo Test"));
 		assertFalse(MsgParser.isForSpecificUser("\\user hello"));
 		assertFalse(MsgParser.isForSpecificUser("\\user"));
+		fail("Test");
 	}
 
 	/**
