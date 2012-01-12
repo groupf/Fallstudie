@@ -62,7 +62,7 @@ public class ClientController implements IfcSocketClientConsumer {
 
 	/**
 	 * @param inCltController
-	 * @return gives the reference of a new created Chat Client CLI back
+	 * @return gives the reference of a new created Chat Client GUI back
 	 */
 
 	protected IfcUserInterface getNewChatClientGUI(

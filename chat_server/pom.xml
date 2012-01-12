@@ -46,6 +46,34 @@
       <build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>cobertura-maven-plugin</artifactId>
+        		<version>2.5.1</version>
+        		<configuration>
+        			<formats>
+						<!--format>html</format-->
+						<format>xml</format>
+					</formats>
+          			<instrumentation>
+            			<!--ignores>
+              				<ignore>ch.hszt.groupf.fallstudie.server.srvconfig.*</ignore>
+            			</ignores-->
+            			<excludes>
+            				<!--exclude>ch/hszt/groupf/fallstudie/server/srvconfig/*.class</exclude-->
+              				<!--exclude>com/example/dullcode/**/*.class</exclude-->
+              				<!--exclude>com/example/**/*Test.class</exclude-->
+            			</excludes>
+          			</instrumentation>
+        		</configuration>
+        		<executions>
+          			<execution>
+            			<goals>
+              				<goal>clean</goal>
+            			</goals>
+          			</execution>
+        		</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
@@ -90,4 +118,13 @@
     		</plugin-->
 		</plugins>
 	</build>
+	<!--reporting>
+    	<plugins>
+      		<plugin>
+        		<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>cobertura-maven-plugin</artifactId>
+        		<version>2.5.1</version>
+      		</plugin>
+    	</plugins>
+  	</reporting-->
 </project>
