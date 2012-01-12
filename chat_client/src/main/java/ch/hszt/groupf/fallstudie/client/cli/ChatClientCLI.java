@@ -221,4 +221,9 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 			e.printStackTrace();
 		}
 	}
+	
+	// Will only be used for Testing
+	protected void sendInputLine(String line) {
+		msgParser(line);
+	}
 }
