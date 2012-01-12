@@ -2,7 +2,6 @@ package ch.hszt.groupf.fallstudie.client.log;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.StringWriter;
 import java.text.DateFormat;
@@ -54,7 +53,7 @@ public class LogFactoryTest {
 
 		assertTrue(s.contains(excpected));
 		assertTrue(s.contains(excpected2));
-		fail("Demo-Test");
+
 	}
 
 	@Test
