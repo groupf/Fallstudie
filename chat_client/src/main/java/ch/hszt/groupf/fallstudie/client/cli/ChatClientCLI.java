@@ -20,46 +20,20 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
  * 
  * @author groupf
  */
-public class ChatClientCLI implements IfcUserInterface {
+public class ChatClientCLI implements IfcUserInterface, Runnable {
 	private boolean _exitCLI = false;
 	private final ClientController _controller;
 	private String[] goodByeMessages = {"Good bye","See you soon","CYA", "Bye", "Peace"};
 
-	
 	
 	/**
 	 * @param inClientController
 	 */
 	public ChatClientCLI(ClientController inClientController) {
 		_controller = inClientController;
-		runSubshell();
+		new Thread(this).start();
 	}
 	
-	
-	/**
-	 * This method will read the user's input line-by-line.  
-	 */
-	private void runSubshell() {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
-
-		welcomeMsg();
-		while (!_exitCLI) {
-
-			try {
-				msgParser(in.readLine());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		try {
-			in.close();
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * msgParser will parse any input line-by-line. It is able to differ between sending a command, a private message or a public message. 
 	 * If a command is typed msgParser will call a subroutine 
@@ -185,6 +159,7 @@ public class ChatClientCLI implements IfcUserInterface {
 	 */
 	public void onReceivedMsg(String inMessage) {
 		// TODO evtl. use a write-buffer
+		System.out.println();
 		System.out.println(inMessage);
 	}
 
@@ -225,4 +200,25 @@ public class ChatClientCLI implements IfcUserInterface {
 		return "CLI";
 	}
 
+	@Override
+	public void run() {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		welcomeMsg();
+		while (!_exitCLI) {
+			
+			try {
+				msgParser(in.readLine());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
