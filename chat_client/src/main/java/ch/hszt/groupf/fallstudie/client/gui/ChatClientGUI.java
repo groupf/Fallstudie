@@ -21,7 +21,6 @@ import java.net.InetAddress;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
@@ -434,7 +433,6 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 	private javax.swing.JRadioButtonMenuItem jRadioButtonMenuLogIsOn;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
-	private LogFactory myLog = null;
 
 	// End of variables declaration//GEN-END:variables
 
@@ -605,14 +603,15 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 	}
 
-	@Override
-	public LogFactory getLoggeronController() {
-		return _controller.getLogger();
-	}
 
 	@Override
 	public String getChatClientString() {
 		return "GUI";
 	}
+
+@Override
+public LogFactory getLoggeronController() {
+	return _controller.getLogger();
+}
 
 }
