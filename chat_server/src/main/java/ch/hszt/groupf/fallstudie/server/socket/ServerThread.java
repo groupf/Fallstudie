@@ -49,7 +49,7 @@ public class ServerThread extends Thread {
 		_server.sendJoinedMsg(_socketUserName);
 
 		try {
-			DataInputStream dInStream = new DataInputStream(_socket.getInputStream());
+			DataInputStream dInStream = getNewDinStream(_socket);
 
 			while (true) {
 
@@ -77,6 +77,10 @@ public class ServerThread extends Thread {
 			// return;
 		}
 
+	}
+
+	protected DataInputStream getNewDinStream(Socket inSocket) throws IOException {
+		return new DataInputStream(inSocket.getInputStream());
 	}
 
 }
