@@ -21,7 +21,6 @@ import java.net.InetAddress;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
@@ -39,8 +38,7 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
  * @author: groupf
  */
 @SuppressWarnings("serial")
-public class ChatClientGUI extends javax.swing.JFrame implements
-		IfcUserInterface {
+public class ChatClientGUI extends javax.swing.JFrame implements IfcUserInterface {
 
 	private final ClientController _controller;
 
@@ -130,8 +128,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 		_jMenuConn.setText("Connection");
 
-		_jMenuItemOpConn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
-				java.awt.event.KeyEvent.VK_Y,
+		_jMenuItemOpConn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y,
 				java.awt.event.InputEvent.CTRL_MASK));
 		_jMenuItemOpConn.setText("Open Connection");
 		_jMenuItemOpConn.addActionListener(new java.awt.event.ActionListener() {
@@ -141,8 +138,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		});
 		_jMenuConn.add(_jMenuItemOpConn);
 
-		_jMenuItemClCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
-				java.awt.event.KeyEvent.VK_X,
+		_jMenuItemClCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
 		_jMenuItemClCon.setText("Close Connection");
 		_jMenuItemClCon.addActionListener(new java.awt.event.ActionListener() {
@@ -162,8 +158,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(new JFrame(),
-						"At the moment not implemented.");
+				JOptionPane.showMessageDialog(new JFrame(), "At the moment not implemented.");
 
 			}
 		});
@@ -174,8 +169,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(new JFrame(),
-						"At the moment not implemented.");
+				JOptionPane.showMessageDialog(new JFrame(), "At the moment not implemented.");
 
 			}
 		});
@@ -193,77 +187,48 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 
 		setJMenuBar(_jMenuBar);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(
-														jScrollPane2,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														635, Short.MAX_VALUE)
-												.addComponent(
-														jScrollPane1,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														635, Short.MAX_VALUE)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		_jLblConnLbl)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(
-																		_jLblConnStatus)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		337,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		_jBtnSend,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		79,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-												.addComponent(
-														jLabelLog,
-														javax.swing.GroupLayout.Alignment.TRAILING))
-								.addContainerGap()));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addComponent(jLabelLog)
-								.addGap(4, 4, 4)
-								.addComponent(jScrollPane1,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										224,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(jScrollPane2,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										219,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(18, 18, 18)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-																.addComponent(
-																		_jLblConnLbl)
-																.addComponent(
-																		_jLblConnStatus))
-												.addComponent(_jBtnSend))
-								.addContainerGap(
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 635,
+												Short.MAX_VALUE)
+										.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635,
+												Short.MAX_VALUE)
+										.addGroup(
+												layout.createSequentialGroup()
+														.addComponent(_jLblConnLbl)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(_jLblConnStatus)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																337, Short.MAX_VALUE)
+														.addComponent(_jBtnSend,
+																javax.swing.GroupLayout.PREFERRED_SIZE, 79,
+																javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addComponent(jLabelLog, javax.swing.GroupLayout.Alignment.TRAILING))
+						.addContainerGap()));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				layout.createSequentialGroup()
+						.addComponent(jLabelLog)
+						.addGap(4, 4, 4)
+						.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+						.addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGap(18, 18, 18)
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addGroup(
+												layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+														.addComponent(_jLblConnLbl).addComponent(_jLblConnStatus))
+										.addComponent(_jBtnSend))
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -310,8 +275,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		String username = clientConnGUI.getUserName();
 		InetAddress serverAddress = clientConnGUI.getServerAddress();
 		int serverPort = clientConnGUI.getServerPort();
-		if (serverAddress != null && username != null
-				&& (serverPort > 0 && serverPort <= 65535)) {
+		if (serverAddress != null && username != null && (serverPort > 0 && serverPort <= 65535)) {
 			_controller.connect(serverAddress, serverPort, username);
 
 			/**
@@ -322,7 +286,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 			 * message in the bottom of the GUI will not change to "connected"
 			 */
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -344,16 +308,11 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		if (_controller.isConnected()) {
 
 			if (_controller.isLogOn()) {
-				_controller.getLogger().writeLog(
-						"The client will no disconnect from the server.");
-				_controller
-						.getLogger()
-						.writeLog(
-								"The client has been disconnected manually from the client");
+				_controller.getLogger().writeLog("The client will no disconnect from the server.");
+				_controller.getLogger().writeLog("The client has been disconnected manually from the client");
 				_controller.turnLogOff();
 			}
-			onDisconnected(new Exception(
-					"Disconnected manually from the client"));
+			onDisconnected(new Exception("Disconnected manually from the client"));
 
 		}
 
@@ -384,25 +343,24 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName())
-					.log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ChatClientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
+					ex);
 		}
 		// </editor-fold>
 
@@ -458,53 +416,46 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		 * Action Listener for set Log on. If this is the first time you turn
 		 * log on you have to choose a text file where to write the log in
 		 */
-		jRadioButtonMenuLogIsOn
-				.addActionListener((new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						jLabelLog.setText("Log is on");
+		jRadioButtonMenuLogIsOn.addActionListener((new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jLabelLog.setText("Log is on");
 
-						if (_controller.getLogger() == null) {
+				if (_controller.getLogger() == null) {
 
-							try {
-								File file = chooseLogTextFile();
-								_controller.setLogger(file);
-							} catch (IOException e) {
-								JFrame frame = new JFrame();
-								JOptionPane.showMessageDialog(frame,
-										"Sorry, I could not turn on the log."
-												+ e);
-							}
-
-							_controller.turnLogOn();
-							_controller.getLogger()
-									.writeFirstLogAfterTurnedOn();
-						} else
-							_controller.turnLogOn();
-						/**
-						 * The sysout is just for testing
-						 */
-						System.out
-								.println("Das Log wurde erfolgreich eingeschaltet.");
+					try {
+						File file = chooseLogTextFile();
+						_controller.setLogger(file);
+					} catch (IOException e) {
+						JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame, "Sorry, I could not turn on the log." + e);
 					}
-				}));
+
+					_controller.turnLogOn();
+					_controller.getLogger().writeFirstLogAfterTurnedOn();
+				} else
+					_controller.turnLogOn();
+				/**
+				 * The sysout is just for testing
+				 */
+				System.out.println("Das Log wurde erfolgreich eingeschaltet.");
+			}
+		}));
 
 		/**
 		 * Action Listener for set Log off. And it writes to the GUI that the
 		 * log is now set off.
 		 */
-		jRadioButtonMenuLogisOff
-				.addActionListener((new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						jLabelLog.setText("Log is off");
-						_controller.turnLogOff();
+		jRadioButtonMenuLogisOff.addActionListener((new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jLabelLog.setText("Log is off");
+				_controller.turnLogOff();
 
-						/**
-						 * The sysout is just for testing
-						 */
-						System.out
-								.println("Das Log wurde erfolgreich ausgeschaltet");
-					}
-				}));
+				/**
+				 * The sysout is just for testing
+				 */
+				System.out.println("Das Log wurde erfolgreich ausgeschaltet");
+			}
+		}));
 
 		/**
 		 * This method will open a FileChooser. So you have to choose an
@@ -513,18 +464,17 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 		 * no Logfile is set.
 		 */
 		jMenuItemSelectFile.setText("Select Log File");
-		jMenuItemSelectFile
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						try {
-							chooseLogTextFile();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+		jMenuItemSelectFile.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				try {
+					chooseLogTextFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-					}
-				});
+			}
+		});
 
 	}
 
@@ -599,8 +549,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements
 	/**
 	 * This method is just used for JUnit Tests
 	 */
-	public void setLoggeronController(File file) throws IOException,
-			NullPointerException {
+	public void setLoggeronController(File file) throws IOException, NullPointerException {
 		_controller.setLogger(file);
 
 	}
