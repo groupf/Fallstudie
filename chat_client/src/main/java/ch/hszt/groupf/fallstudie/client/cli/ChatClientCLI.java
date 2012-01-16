@@ -104,6 +104,11 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 	 * @param command user has entered
 	 */
 	private void setLogfilePath(String[] currentLine) {
+		if (currentLine.length != 2 ) {
+			System.out.println("Incorrect number of arguments");
+			System.out.println("Usage: \\logfile\t\t<path>");
+			return;
+		}
 		try {
 			_controller.setLogger(new File(currentLine[1]));
 			_controller.turnLogOn();
@@ -118,6 +123,11 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 	 * @param command user has entered.
 	 */
 	private void connectToHost(String[] currentLine) {
+		if (currentLine.length != 4) { 
+			System.out.println("Incorrect number of arguments");
+			System.out.println("Usage: \\connect <hostname> <port> <username>");
+			return;
+		}
 		int port = Integer.parseInt(currentLine[2]);
 		String username = currentLine[3];
 		String hostname = currentLine[1];
