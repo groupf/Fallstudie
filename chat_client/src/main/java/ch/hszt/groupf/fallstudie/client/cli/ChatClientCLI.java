@@ -67,14 +67,8 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 			} else {
 				System.out.println("command not found. See \\help for further information");
 			}
-		
-		// check whether the message is private nor not		
-		} else if (currentLine[0].startsWith("/")) {
-			currentLine[0] = currentLine[0].replaceFirst("/", "");
-			String receipt = currentLine[0];
-			System.out.println("sending msg to user " + receipt);
-		} else if (currentLine[0].matches("\\w+")){
-			//System.out.println("sending msg to all users");
+
+		} else if (currentLine[0].matches("\\w+") || currentLine[0].startsWith("/")){
 			_controller.send(inText);
 		}	
 	}
@@ -159,7 +153,7 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 	 */
 	public void onReceivedMsg(String inMessage) {
 		// TODO evtl. use a write-buffer
-		System.out.println();
+		//System.out.println();
 		System.out.println(inMessage);
 	}
 
