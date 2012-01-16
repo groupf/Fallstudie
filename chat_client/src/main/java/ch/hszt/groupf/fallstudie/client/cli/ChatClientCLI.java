@@ -201,7 +201,6 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 		
 		welcomeMsg();
 		while (!_exitCLI) {
-			
 			try {
 				msgParser(in.readLine());
 			} catch (IOException e) {
