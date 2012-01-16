@@ -146,7 +146,6 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 	 */
 	private void welcomeMsg() {
 		System.out.println("Welcome to the CLI-Chat Client IRCv2" + System.getProperty("line.separator"));
-		// TODO print out the help (possible commands)
 	}
 
 	/* (non-Javadoc)
@@ -162,13 +161,9 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 	 * @see ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer#onReceivedMsg(java.lang.String)
 	 */
 	public void onReceivedMsg(String inMessage) {
-		// TODO evtl. use a write-buffer
-		//System.out.println();
 		System.out.println(inMessage);
 	}
 
-	
-	
 	/* (non-Javadoc)
 	 * @see ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface#displayConnStatus()
 	 */
@@ -204,6 +199,9 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 		return "CLI";
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -223,9 +221,15 @@ public class ChatClientCLI implements IfcUserInterface, Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.exit(0);
 	}
 	
-	// Will only be used for Testing
+	
+	/**
+	 * Method will be used by JUnit tests to simulate user input.
+	 * 
+	 * @param pseudo user input line
+	 */
 	protected void sendInputLine(String line) {
 		msgParser(line);
 	}
