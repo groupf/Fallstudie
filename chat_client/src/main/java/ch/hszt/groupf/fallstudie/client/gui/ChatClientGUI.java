@@ -392,7 +392,6 @@ public class ChatClientGUI extends javax.swing.JFrame implements IfcUserInterfac
 	private javax.swing.JRadioButtonMenuItem jRadioButtonMenuLogIsOn;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
-	private LogFactory myLog = null;
 
 	// End of variables declaration//GEN-END:variables
 
@@ -554,14 +553,15 @@ public class ChatClientGUI extends javax.swing.JFrame implements IfcUserInterfac
 
 	}
 
-	@Override
-	public LogFactory getLoggeronController() {
-		return _controller.getLogger();
-	}
 
 	@Override
 	public String getChatClientString() {
 		return "GUI";
 	}
+
+@Override
+public LogFactory getLoggeronController() {
+	return _controller.getLogger();
+}
 
 }

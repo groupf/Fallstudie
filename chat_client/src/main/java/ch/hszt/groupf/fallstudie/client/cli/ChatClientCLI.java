@@ -20,46 +20,20 @@ import ch.hszt.groupf.fallstudie.client.log.LogFactory;
  * 
  * @author groupf
  */
-public class ChatClientCLI implements IfcUserInterface {
+public class ChatClientCLI implements IfcUserInterface, Runnable {
 	private boolean _exitCLI = false;
 	private final ClientController _controller;
 	private String[] goodByeMessages = {"Good bye","See you soon","CYA", "Bye", "Peace"};
 
-	
 	
 	/**
 	 * @param inClientController
 	 */
 	public ChatClientCLI(ClientController inClientController) {
 		_controller = inClientController;
-		runSubshell();
+		new Thread(this).start();
 	}
 	
-	
-	/**
-	 * This method will read the user's input line-by-line.  
-	 */
-	private void runSubshell() {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
-
-		welcomeMsg();
-		while (!_exitCLI) {
-
-			try {
-				msgParser(in.readLine());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		try {
-			in.close();
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * msgParser will parse any input line-by-line. It is able to differ between sending a command, a private message or a public message. 
 	 * If a command is typed msgParser will call a subroutine 
@@ -93,14 +67,8 @@ public class ChatClientCLI implements IfcUserInterface {
 			} else {
 				System.out.println("command not found. See \\help for further information");
 			}
-		
-		// check whether the message is private nor not		
-		} else if (currentLine[0].startsWith("/")) {
-			currentLine[0] = currentLine[0].replaceFirst("/", "");
-			String receipt = currentLine[0];
-			System.out.println("sending msg to user " + receipt);
-		} else if (currentLine[0].matches("\\w+")){
-			//System.out.println("sending msg to all users");
+
+		} else if (currentLine[0].matches("\\w+") || currentLine[0].startsWith("/")){
 			_controller.send(inText);
 		}	
 	}
@@ -136,6 +104,11 @@ public class ChatClientCLI implements IfcUserInterface {
 	 * @param command user has entered
 	 */
 	private void setLogfilePath(String[] currentLine) {
+		if (currentLine.length != 2 ) {
+			System.out.println("Incorrect number of arguments");
+			System.out.println("Usage: \\logfile\t\t<path>");
+			return;
+		}
 		try {
 			_controller.setLogger(new File(currentLine[1]));
 			_controller.turnLogOn();
@@ -150,6 +123,11 @@ public class ChatClientCLI implements IfcUserInterface {
 	 * @param command user has entered.
 	 */
 	private void connectToHost(String[] currentLine) {
+		if (currentLine.length != 4) { 
+			System.out.println("Incorrect number of arguments");
+			System.out.println("Usage: \\connect <hostname> <port> <username>");
+			return;
+		}
 		int port = Integer.parseInt(currentLine[2]);
 		String username = currentLine[3];
 		String hostname = currentLine[1];
@@ -168,7 +146,6 @@ public class ChatClientCLI implements IfcUserInterface {
 	 */
 	private void welcomeMsg() {
 		System.out.println("Welcome to the CLI-Chat Client IRCv2" + System.getProperty("line.separator"));
-		// TODO print out the help (possible commands)
 	}
 
 	/* (non-Javadoc)
@@ -184,12 +161,9 @@ public class ChatClientCLI implements IfcUserInterface {
 	 * @see ch.hszt.groupf.fallstudie.client.socket.IfcSocketClientConsumer#onReceivedMsg(java.lang.String)
 	 */
 	public void onReceivedMsg(String inMessage) {
-		// TODO evtl. use a write-buffer
 		System.out.println(inMessage);
 	}
 
-	
-	
 	/* (non-Javadoc)
 	 * @see ch.hszt.groupf.fallstudie.client.controller.IfcUserInterface#displayConnStatus()
 	 */
@@ -225,4 +199,38 @@ public class ChatClientCLI implements IfcUserInterface {
 		return "CLI";
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		welcomeMsg();
+		while (!_exitCLI) {
+			try {
+				msgParser(in.readLine());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
+	}
+	
+	
+	/**
+	 * Method will be used by JUnit tests to simulate user input.
+	 * 
+	 * @param pseudo user input line
+	 */
+	protected void sendInputLine(String line) {
+		msgParser(line);
+	}
 }
