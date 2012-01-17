@@ -6,7 +6,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -57,7 +56,7 @@ public class ChatClientCLITest {
 
 	}
 
-	@After
+	// @After
 	public void tearDown() {
 		String quit = "\\quit" + System.getProperty("line.separator");
 		inContent = new ByteArrayInputStream(quit.getBytes());
