@@ -261,6 +261,7 @@ public class ChatServer {
 		synchronized (_openOutputStreams) {
 			try {
 				_openOutputStreams.get(inRecipient).writeUTF("from " + inSender + ": " + inMessage);
+				_openOutputStreams.get(inSender).writeUTF("sent to " + inRecipient + ": " + inMessage);
 			} catch (IOException e) {
 
 				try {
