@@ -46,6 +46,7 @@ public class ServerThread extends Thread {
 
 	public void run() {
 
+		_server.sendWelcomeMsg(_socketUserName);
 		_server.sendJoinedMsg(_socketUserName);
 
 		try {

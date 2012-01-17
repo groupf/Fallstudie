@@ -181,6 +181,27 @@ public class ChatServer {
 
 	/**
 	 * When an new user is connected to the Chatserver, the Chatserver sends a
+	 * Welcome-message to this user.
+	 * 
+	 * @param inUserName
+	 *            the username of newly connected user
+	 */
+	protected void sendWelcomeMsg(String inUserName) {
+		synchronized (_openOutputStreams) {
+			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()) {
+				if (entry.getKey().equals(inUserName)) {
+					try {
+						entry.getValue().writeUTF("Welcome to the chat-room. Your username: " + inUserName);
+					} catch (IOException e) {
+						logger.info("Could not send Welcome-message to User: " + entry.getKey());
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * When an new user is connected to the Chatserver, the Chatserver sends a
 	 * 'Joind'-Message to all other active users.
 	 * 
 	 * @param inUserName
