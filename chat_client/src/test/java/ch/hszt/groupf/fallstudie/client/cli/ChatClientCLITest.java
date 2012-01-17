@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 import ch.hszt.groupf.fallstudie.client.controller.ClientController;
 import ch.hszt.groupf.fallstudie.client.socket.IfcClientSocket;
@@ -51,7 +52,7 @@ public class ChatClientCLITest {
 		// assertTrue(outContent.toString().contains("Welcome"));
 	}
 
-	// @Test
+	@Test
 	public void testHelpMsg() {
 
 	}
