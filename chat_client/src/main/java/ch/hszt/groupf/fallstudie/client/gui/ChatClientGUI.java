@@ -69,167 +69,169 @@ public class ChatClientGUI extends javax.swing.JFrame implements IfcUserInterfac
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
-	// desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		jScrollPane1 = new javax.swing.JScrollPane();
-		_jTxtAReceived = new javax.swing.JTextArea();
-		jScrollPane2 = new javax.swing.JScrollPane();
-		_jTxtAInput = new javax.swing.JTextArea();
-		_jBtnSend = new javax.swing.JButton();
-		_jLblConnLbl = new javax.swing.JLabel();
-		_jLblConnStatus = new javax.swing.JLabel();
-		_jMenuBar = new javax.swing.JMenuBar();
-		_jMenuConn = new javax.swing.JMenu();
-		_jMenuItemOpConn = new javax.swing.JMenuItem();
-		_jMenuItemClCon = new javax.swing.JMenuItem();
-		jMenu1 = new javax.swing.JMenu();
-		jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-		jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-		_jMenuHelp = new javax.swing.JMenu();
-		_jMenuItemHlpCmd = new javax.swing.JMenuItem();
-		_jMenuItemHlpAbout = new javax.swing.JMenuItem();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        _jTxtAReceived = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        _jTxtAInput = new javax.swing.JTextArea();
+        _jBtnSend = new javax.swing.JButton();
+        _jLblConnLbl = new javax.swing.JLabel();
+        _jLblConnStatus = new javax.swing.JLabel();
+        _jMenuBar = new javax.swing.JMenuBar();
+        _jMenuConn = new javax.swing.JMenu();
+        _jMenuItemOpConn = new javax.swing.JMenuItem();
+        _jMenuItemClCon = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        _jMenuHelp = new javax.swing.JMenu();
+        _jMenuItemHlpCmd = new javax.swing.JMenuItem();
+        _jMenuItemHlpAbout = new javax.swing.JMenuItem();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("IRCv2 Chat Client");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("IRCv2 Chat Client");
 
-		jScrollPane1.setAutoscrolls(true);
+        jScrollPane1.setAutoscrolls(true);
 
-		_jTxtAReceived.setColumns(20);
-		_jTxtAReceived.setEditable(false);
-		_jTxtAReceived.setLineWrap(true);
-		_jTxtAReceived.setRows(5);
-		jScrollPane1.setViewportView(_jTxtAReceived);
+        _jTxtAReceived.setColumns(20);
+        _jTxtAReceived.setEditable(false);
+        _jTxtAReceived.setLineWrap(true);
+        _jTxtAReceived.setRows(5);
+        jScrollPane1.setViewportView(_jTxtAReceived);
 
-		jScrollPane2.setAutoscrolls(true);
+        jScrollPane2.setAutoscrolls(true);
 
-		_jTxtAInput.setColumns(20);
-		_jTxtAInput.setLineWrap(true);
-		_jTxtAInput.setRows(5);
-		_jTxtAInput.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyPressed(java.awt.event.KeyEvent evt) {
-				onKeyPressed(evt);
-			}
-		});
-		jScrollPane2.setViewportView(_jTxtAInput);
+        _jTxtAInput.setColumns(20);
+        _jTxtAInput.setLineWrap(true);
+        _jTxtAInput.setRows(5);
+        _jTxtAInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                onKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                onKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(_jTxtAInput);
 
-		_jBtnSend.setText("Send");
-		_jBtnSend.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				onSendActionPerformed(evt);
-			}
-		});
+        _jBtnSend.setText("Send");
+        _jBtnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onSendActionPerformed(evt);
+            }
+        });
 
-		_jLblConnLbl.setText("Connection Status:");
+        _jLblConnLbl.setText("Connection Status:");
 
-		_jLblConnStatus.setText("Not connected");
+        _jLblConnStatus.setText("Not connected");
 
-		_jMenuConn.setText("Connection");
+        _jMenuConn.setText("Connection");
 
-		_jMenuItemOpConn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y,
-				java.awt.event.InputEvent.CTRL_MASK));
-		_jMenuItemOpConn.setText("Open Connection");
-		_jMenuItemOpConn.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				onOpenConnection(evt);
-			}
-		});
-		_jMenuConn.add(_jMenuItemOpConn);
+        _jMenuItemOpConn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        _jMenuItemOpConn.setText("Open Connection");
+        _jMenuItemOpConn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onOpenConnection(evt);
+            }
+        });
+        _jMenuConn.add(_jMenuItemOpConn);
 
-		_jMenuItemClCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X,
-				java.awt.event.InputEvent.CTRL_MASK));
-		_jMenuItemClCon.setText("Close Connection");
-		_jMenuItemClCon.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				onCloseConnection(evt);
-			}
-		});
-		_jMenuConn.add(_jMenuItemClCon);
+        _jMenuItemClCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        _jMenuItemClCon.setText("Close Connection");
+        _jMenuItemClCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onCloseConnection(evt);
+            }
+        });
+        _jMenuConn.add(_jMenuItemClCon);
 
-		_jMenuBar.add(_jMenuConn);
+        _jMenuBar.add(_jMenuConn);
 
-		jMenu1.setText("Options");
+        jMenu1.setText("Options");
 
-		jCheckBoxMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O,
-				java.awt.event.InputEvent.CTRL_MASK));
-		jCheckBoxMenuItem1.setSelected(true);
-		jCheckBoxMenuItem1.setText("Log on");
-		jMenu1.add(jCheckBoxMenuItem1);
+        jCheckBoxMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("Log on");
+        jMenu1.add(jCheckBoxMenuItem1);
 
-		jCheckBoxMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F,
-				java.awt.event.InputEvent.CTRL_MASK));
-		jCheckBoxMenuItem2.setSelected(true);
-		jCheckBoxMenuItem2.setText("Log off");
-		jMenu1.add(jCheckBoxMenuItem2);
+        jCheckBoxMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText("Log off");
+        jMenu1.add(jCheckBoxMenuItem2);
 
-		_jMenuBar.add(jMenu1);
+        _jMenuBar.add(jMenu1);
 
-		_jMenuHelp.setText("Help");
+        _jMenuHelp.setText("Help");
 
-		_jMenuItemHlpCmd.setText("Commands");
-		_jMenuHelp.add(_jMenuItemHlpCmd);
+        _jMenuItemHlpCmd.setText("Commands");
+        _jMenuHelp.add(_jMenuItemHlpCmd);
 
-		_jMenuItemHlpAbout.setText("About");
-		_jMenuHelp.add(_jMenuItemHlpAbout);
+        _jMenuItemHlpAbout.setText("About");
+        _jMenuHelp.add(_jMenuItemHlpAbout);
 
-		_jMenuBar.add(_jMenuHelp);
+        _jMenuBar.add(_jMenuHelp);
 
-		setJMenuBar(_jMenuBar);
+        setJMenuBar(_jMenuBar);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(
-								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-										.addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 635,
-												Short.MAX_VALUE)
-										.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635,
-												Short.MAX_VALUE)
-										.addGroup(
-												layout.createSequentialGroup()
-														.addComponent(_jLblConnLbl)
-														.addPreferredGap(
-																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-														.addComponent(_jLblConnStatus)
-														.addPreferredGap(
-																javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																360, Short.MAX_VALUE)
-														.addComponent(_jBtnSend,
-																javax.swing.GroupLayout.PREFERRED_SIZE, 79,
-																javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(18, 18, 18)
-						.addGroup(
-								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-										.addGroup(
-												layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-														.addComponent(_jLblConnLbl).addComponent(_jLblConnStatus))
-										.addComponent(_jBtnSend))
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(_jLblConnLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(_jLblConnStatus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
+                        .addComponent(_jBtnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(_jLblConnLbl)
+                        .addComponent(_jLblConnStatus))
+                    .addComponent(_jBtnSend))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-		pack();
-	}// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
-	private void onKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_onKeyPressed
-		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+    private void onKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_onKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (evt.isControlDown()) {
-				_jTxtAInput.append("\n");
+				String enter = System.getProperty("line.separator");
+				_jTxtAInput.append(enter);
 			} else {
 				sendMsg();
 
-			}
-		}
+			}}
+    }//GEN-LAST:event_onKeyReleased
+
+	private void onKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_onKeyPressed
+		
+		
+		
+
+		
+		//System.out.println("Länge des Felder: " + _jTxtAInput.getText().length());
 	}// GEN-LAST:event_onKeyPressed
+	
+	
 
 	/**
 	 * This method just call the send Methode. It will not do anything else.
@@ -243,9 +245,19 @@ public class ChatClientGUI extends javax.swing.JFrame implements IfcUserInterfac
 	/**
 	 * The GUI will not send the message. It just call the sending Method of the
 	 * Controller and write the sended message into the message field.
+	 * 
+	 * Before sending the message text, look if a Enter is at the end of the text. If yes, remove it.
 	 */
 	private void sendMsg() {
-		_controller.send(_jTxtAInput.getText());
+		String enter = System.getProperty("line.separator");
+		
+		String sendText = _jTxtAInput.getText();
+		
+		
+		sendText.replace(".*enter$", "");
+		
+		//System.out.println(sendText +"\nafasdfasdfsdf");
+		_controller.send(sendText);
 		_jTxtAInput.setText("");
 
 	}
@@ -273,7 +285,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements IfcUserInterfac
 			 * message in the bottom of the GUI will not change to "connected"
 			 */
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -358,26 +370,25 @@ public class ChatClientGUI extends javax.swing.JFrame implements IfcUserInterfac
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton _jBtnSend;
-	private javax.swing.JLabel _jLblConnLbl;
-	private javax.swing.JLabel _jLblConnStatus;
-	private javax.swing.JMenuBar _jMenuBar;
-	private javax.swing.JMenu _jMenuConn;
-	private javax.swing.JMenu _jMenuHelp;
-	private javax.swing.JMenuItem _jMenuItemClCon;
-	private javax.swing.JMenuItem _jMenuItemHlpAbout;
-	private javax.swing.JMenuItem _jMenuItemHlpCmd;
-	private javax.swing.JMenuItem _jMenuItemOpConn;
-	private javax.swing.JTextArea _jTxtAInput;
-	private javax.swing.JTextArea _jTxtAReceived;
-	private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-	private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-	private javax.swing.JMenu jMenu1;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JScrollPane jScrollPane2;
-
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _jBtnSend;
+    private javax.swing.JLabel _jLblConnLbl;
+    private javax.swing.JLabel _jLblConnStatus;
+    private javax.swing.JMenuBar _jMenuBar;
+    private javax.swing.JMenu _jMenuConn;
+    private javax.swing.JMenu _jMenuHelp;
+    private javax.swing.JMenuItem _jMenuItemClCon;
+    private javax.swing.JMenuItem _jMenuItemHlpAbout;
+    private javax.swing.JMenuItem _jMenuItemHlpCmd;
+    private javax.swing.JMenuItem _jMenuItemOpConn;
+    private javax.swing.JTextArea _jTxtAInput;
+    private javax.swing.JTextArea _jTxtAReceived;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    // End of variables declaration//GEN-END:variables
 
 	/**
 	 * This is the initalisation Menu for the Menu in the GUI. It contains the
